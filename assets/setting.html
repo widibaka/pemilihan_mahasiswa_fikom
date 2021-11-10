@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS Custome -->
+    <link rel="stylesheet" href="style.css" />
+
+    <title>HMPTI</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- card secrion -->
+    <section class="h-100 w-100" style="box-sizing: border-box; background-color: #f2f6ff" id="skill">
+      <div class="content-3-7 overflow-hidden container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
+        <div class="container mx-auto">
+          <div class="d-flex flex-column text-center w-100" style="margin-bottom: 1rem">
+            <h2 class="title-text">Settings</h2>
+          </div>
+
+          <div class="card align-content-center mb-5">
+            <div class="card-header bg-kuning-dika rounded-3">Users</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Admin 1</li>
+              <li class="list-group-item">Admin 2</li>
+              <li class="list-group-item">Bukan Admin</li>
+            </ul>
+          </div>
+
+          <div class="col-12">
+            <p class="text-center">
+              <a class="btn btn-fill justify-content-center align-items-center w-100" href="#" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="fa fa-plus-circle"></span> Tambah Pengguna</a>
+            </p>
+          </div>
+
+
+          <hr class="my-5">
+          <!-- Pembatas -->
+
+
+          <div class="d-flex flex-column text-center w-100 mt-5" style="margin-bottom: 1rem">
+            <h3 class="title-text">Jadwal Secara Global</h3>
+            <p class="caption-text mx-auto">Akan diterapkan untuk semua ormawa secara global</p>
+          </div>
+
+          <form>
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">Tanggal Mulai</label>
+              <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+            </div>
+            <div class="form-group mb-4">
+              <label for="exampleInputEmail1">Tanggal Selesai</label>
+              <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+            </div>
+            <div class="col-12 mb-lg-5">
+              <p class="text-center">
+                <a class="btn btn-fill justify-content-center align-items-center w-100" href="#" role="button">Terapkan</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- end card section -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tambah Pengguna</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="md-form mb-6">
+              <label for="#">User</label>
+              <input type="text" id="user" class="form-control" />
+            </div>
+            <br />
+            <div class="md-form mb-6">
+              <label for="#">Password</label>
+              <input type="password" id="password" class="form-control" />
+            </div>
+          </div>
+          <p class="text-center">
+            <a class="btn btn-warning justify-content-center align-items-center w-50" href="#" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

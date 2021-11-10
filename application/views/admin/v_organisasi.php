@@ -1,0 +1,122 @@
+    <!-- card secrion -->
+    <section class="h-100 w-100" style="box-sizing: border-box; background-color: #f2f6ff" id="skill">
+      <div class="content-3-7 overflow-hidden container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
+        <div class="mx-auto row">
+          <div class="d-flex flex-column text-center w-100" style="margin-bottom: 1rem">
+            <h2 class="title-text">HMPTI</h2>
+            <p class="caption-text mx-auto">
+              Pengaturan Organisasi
+            </p>
+          </div>
+
+          <div class="col-11">
+            <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <span class="fa fa-user-circle"></span>
+              <span>Kandidat Ketua</span>
+            </a>
+          </div>
+          <div class="col-1">
+            <a class="btn btn-success justify-content-center align-items-center shadow rounded-circle" role="button" style="height: 40px; width: 40px;" onclick="$('#keterangan-kandidat-ketua').toggle(400)">
+              <span class="fa fa-info"></span>
+            </a>
+          </div>
+          <div class="col-12 mt-2" style="display: none;" id="keterangan-kandidat-ketua">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+          </div>
+          <hr style="opacity: 0;">
+          <!-- Satu item -->
+
+          <div class="col-11">
+            <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <span class="fa fa-chart-pie"></span>
+              <span>Hasil Pemilihan</span>
+            </a>
+          </div>
+          <div class="col-1">
+            <a class="btn btn-success justify-content-center align-items-center shadow rounded-circle" role="button" style="height: 40px; width: 40px;" onclick="$('#keterangan-hasil-pemilihan').toggle(400)">
+              <span class="fa fa-info"></span>
+            </a>
+          </div>
+          <div class="col-12 mt-2" style="display: none;" id="keterangan-hasil-pemilihan">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+          </div>
+          <hr style="opacity: 0;">
+          <!-- Satu item -->
+
+          <div class="col-11">
+            <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button" href="<?php echo base_url() ?>">
+              <span class="fa fa-eye"></span>
+              <span>Lihat Halaman Pemilihan</span>
+            </a>
+          </div>
+          <div class="col-1">
+            <a class="btn btn-success justify-content-center align-items-center shadow rounded-circle" role="button" style="height: 40px; width: 40px;" onclick="$('#keterangan-lihat-halaman').toggle(400)">
+              <span class="fa fa-info"></span>
+            </a>
+          </div>
+          <div class="col-12 mt-2" style="display: none;" id="keterangan-lihat-halaman">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+          </div>
+          <hr style="opacity: 0;">
+          <!-- Satu item -->
+
+          <div class="col-11">
+            <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <span class="fa fa-users-cog"></span>
+              <span>Peserta Pemilihan</span>
+            </a>
+          </div>
+          <div class="col-1">
+            <a class="btn btn-success justify-content-center align-items-center shadow rounded-circle" role="button" style="height: 40px; width: 40px;" onclick="$('#keterangan-peserta-pemilihan').toggle(400)">
+              <span class="fa fa-info"></span>
+            </a>
+          </div>
+          <div class="col-12 mt-2" style="display: none;" id="keterangan-peserta-pemilihan">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+          </div>
+          <hr style="opacity: 0;">
+          <!-- Satu item -->
+
+          <div class="col-11">
+            <a href="<?php echo base_url(); ?>admin/organisasi/pengaturan/" class="btn btn-fill justify-content-center align-items-center w-100 shadow">
+              <span class="fa fa-cogs"></span>
+              <span>Pengaturan</span>
+            </a>
+          </div>
+          <div class="col-1 text-start">
+            <a class="btn btn-success justify-content-center align-items-center shadow rounded-circle" role="button" style="height: 40px; width: 40px;" onclick="$('#keterangan-pengaturan').toggle(400)">
+              <span class="fa fa-info"></span>
+            </a>
+          </div>
+          <div class="col-12 mt-2" style="display: none;" id="keterangan-pengaturan">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+          </div>
+          <hr style="opacity: 0;">
+          <!-- Satu item -->
+
+        </div>
+      </div>
+    </section>
+    <!-- end card section -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="md-form mb-6">
+              <label for="nama_organisasi">Nama Organisasi</label>
+              <input type="text" id="nama_organisasi" placeholder="Estetika ..." required class="form-control mt-1">
+            </div>
+          </div>
+          <p class="text-center">
+            <a class="btn btn-warning justify-content-center align-items-center w-50" href="#" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
