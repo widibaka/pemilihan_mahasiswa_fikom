@@ -1,5 +1,5 @@
     <!-- card secrion -->
-    <section class="h-100 w-100" style="box-sizing: border-box; background-color: #f2f6ff" id="skill">
+    <section class="h-100 w-100" style="box-sizing: border-box; background-color: transparent" id="skill">
       <div class="content-3-7 overflow-hidden container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="container mx-auto">
           <div class="d-flex flex-column text-center w-100" style="margin-bottom: 1rem">

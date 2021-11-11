@@ -13,7 +13,7 @@
           <div class="d-flex flex-wrap">
 
             <?php foreach ($organisasi as $key => $val): ?>
-              <a href="<?php echo base_url(); ?>admin/organisasi" class="mx-auto card-item position-relative" style="text-decoration: none;">
+              <a href="<?php echo base_url(); ?>admin/organisasi/index/<?php echo $val['id_organisasi'] ?>" class="mx-auto card-item position-relative" style="text-decoration: none;">
                   <div class=" shadow-sm card-item-outline d-flex flex-column position-relative overflow-hidden h-100">
                     <div style="
                         background-image: url('<?php echo base_url(); ?>assets/logo/<?php echo $val['logo'] ?>');

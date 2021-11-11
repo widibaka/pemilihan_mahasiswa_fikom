@@ -17,21 +17,36 @@ class Settings extends CI_Controller {
 	public function index()
 	{
 		$post = $this->input->post();
-		if ( $post ) {
-			$this->AdminModel->add_admin( $post );
-			redirect( base_url() . $this->uri->uri_string() );
-		}
-		$data['title'] = 'Admin';
-		$data['userdata'] = $this->AuthModel->get_user(
-			$this->session->userdata('id_user')
-		);
+		
+		$data['title'] = 'Settings';
 
-		$data['main_data'] = $this->AdminModel->get_all_admin();
+		$data['data_admin'] = $this->AdminModel->get_all_admin();
+		$data['data_settings'] = $this->SettingsModel->get_settings();
 
 		$this->load->view('admin/templates/header', $data);
 		$this->load->view('admin/v_settings', $data);
 		$this->load->view('admin/templates/footer', $data);
 		$this->load->view('admin/v_settings_JS', $data);
+	}
+
+	public function hapus_admin($id_admin)
+	{
+		$this->AdminModel->delete($id_admin);
+		redirect( base_url() . 'admin/settings/' );
+	}
+
+	public function tambah_admin()
+	{
+		$data = $this->input->post();
+		$this->AdminModel->add_admin($data);
+		redirect( base_url() . 'admin/settings/' );
+	}
+
+	public function update_settings()
+	{
+		$data = $this->input->post();
+		$this->SettingsModel->update_settings($data);
+		redirect( base_url() . 'admin/settings/' );
 	}
 
 

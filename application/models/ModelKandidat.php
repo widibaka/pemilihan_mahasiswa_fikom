@@ -7,7 +7,6 @@ class ModelKandidat extends CI_Model {
 	{
 		$this->db->order_by('nama_kandidat', 'ASC'); 
 		$this->db->where('id_organisasi', $id_organisasi);
-		$this->db->where('diarsipkan', 0);
 		return $this->db->get( $this->table )->result_array();
 	}
 	public function add_admin($data)

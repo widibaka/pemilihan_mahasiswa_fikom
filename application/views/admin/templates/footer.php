@@ -1,9 +1,9 @@
 
-    <footer class="footer mt-auto py-3 bg-light shadow">
+    <!-- <footer class="footer mt-auto py-3 bg-light shadow">
       <div class="container text-center">
         <span class="text-muted">Privided By HMPTI UDB 2021</span>
       </div>
-    </footer>
+    </footer> -->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
@@ -40,8 +40,8 @@
   }
 
   // kalo submit, otomatis beri loader
-  $('button[type="submit"]').click(function () {
-    show_loader( $(this) );
+  $('form').submit(function () {
+    show_loader( $(this).find('button[type="submit"]') );
   })
 
 

@@ -14,7 +14,13 @@ class ModelOrganisasi extends CI_Model {
     $this->db->limit(1);
 		return $this->db->get( $this->table )->row_array();
 	}
-	public function add_admin($data)
+	public function getOrganisasiById($id_organisasi)
+	{
+		$this->db->where('id_organisasi', $id_organisasi);
+    $this->db->limit(1);
+		return $this->db->get( $this->table )->row_array();
+	}
+	public function add($data)
 	{
 		$data['email'] = $data['email'] . '@admin.hmpti';
 		$data['admin'] = 1;
@@ -27,6 +33,11 @@ class ModelOrganisasi extends CI_Model {
 			'id_user' => $data['id_user']
 		];
 		$this->db->insert('galeri_admin', $data2);
+	}
+	public function update($data, $id_organisasi)
+	{
+		$this->db->where('id_organisasi', $id_organisasi);
+		$this->db->update($this->table, $data);
 	}
 	public function delete($data)
 	{

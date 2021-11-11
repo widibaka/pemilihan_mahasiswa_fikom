@@ -6,4 +6,8 @@
         format: 'YYYY-MM-DD HH:mm:ss'
     });
 
+    setTimeout(function () {
+        $("#exampleModal").modal("show");
+    }, 500);
+
 </script>

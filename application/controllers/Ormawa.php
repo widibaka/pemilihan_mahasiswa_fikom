@@ -98,10 +98,10 @@ class Ormawa extends CI_Controller {
 	    }
 
 		// start	
-		$data['page_title'] = "Pemilihan Ketua HMP TI 2020";
-
 		$nama_organisasi = str_replace('_', ' ', $nama_organisasi);
 		$data['organisasi'] = $this->ModelOrganisasi->getOrganisasiByNamaOrganisasi($nama_organisasi);
+		
+		$data['page_title'] = "Pemilihan Ketua ". $data['organisasi']['nama_organisasi'] ." 2022";
 
 		// echo '<pre>'; var_dump( $data['organisasi'] ); die;
 

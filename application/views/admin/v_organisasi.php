@@ -1,16 +1,20 @@
     <!-- card secrion -->
-    <section class="h-100 w-100" style="box-sizing: border-box; background-color: #f2f6ff" id="skill">
+    <section class="h-100 w-100" style="box-sizing: border-box; background-color: transparent" id="skill">
       <div class="content-3-7 overflow-hidden container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="mx-auto row">
           <div class="d-flex flex-column text-center w-100" style="margin-bottom: 1rem">
-            <h2 class="title-text">HMPTI</h2>
+            <h2 class="title-text"><?php echo $main_data['nama_organisasi'] ?></h2>
             <p class="caption-text mx-auto">
-              Pengaturan Organisasi
+              <img src="<?php echo base_url() . 'assets/logo/' . $main_data['logo'] ?>" alt="" style="height: 150px;">
             </p>
           </div>
 
+          <p class="text-center">
+            Dipublikasikan: <strong><?php echo $main_data['publikasi'] ?></strong>
+          </p>
+
           <div class="col-11">
-            <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <a href="<?php echo base_url(); ?>admin/organisasi/kandidat_ketua/<?php echo $main_data['id_organisasi']; ?>" class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button">
               <span class="fa fa-user-circle"></span>
               <span>Kandidat Ketua</span>
             </a>
@@ -44,7 +48,7 @@
           <!-- Satu item -->
 
           <div class="col-11">
-            <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button" href="<?php echo base_url() ?>">
+            <a target="_blank" href="<?php echo base_url(); ?>ormawa/i/<?php echo str_replace(' ', "_", $main_data['nama_organisasi']); ?>" class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button" href="<?php echo base_url() ?>">
               <span class="fa fa-eye"></span>
               <span>Lihat Halaman Pemilihan</span>
             </a>
@@ -78,7 +82,7 @@
           <!-- Satu item -->
 
           <div class="col-11">
-            <a href="<?php echo base_url(); ?>admin/organisasi/pengaturan/" class="btn btn-fill justify-content-center align-items-center w-100 shadow">
+            <a href="<?php echo base_url(); ?>admin/organisasi/pengaturan/<?php echo $main_data['id_organisasi'] ?>" class="btn btn-fill justify-content-center align-items-center w-100 shadow">
               <span class="fa fa-cogs"></span>
               <span>Pengaturan</span>
             </a>

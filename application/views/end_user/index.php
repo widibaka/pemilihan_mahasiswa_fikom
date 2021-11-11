@@ -179,10 +179,16 @@
       }
 
       .card {
-        transition: opacity 200ms ease;
+        transition: all 300ms ease-out;
+        margin-top: 20px!important;
+        margin-bottom: 20px!important;
+        background-color: #e7e7e8;
+        border: none;
+        border-radius: 5%;
       }
       .card:hover {
-        opacity: .8;
+        margin-top: 10px!important;
+        margin-bottom: 30px!important;
       }
     </style>
 
@@ -225,7 +231,6 @@
             </div>
             <div class="card-body <?php echo $val['id_kandidat'] ?>">
               <h3 class="card-title pricing-card-title nama_panjang text-center"><?php echo $val['nama_kandidat'] ?></h3>
-              <span class="d-none kohousha_no_namae">Andreas</span>
               <div class="visi_misi d-none">
                 <p>
                   <h6 class="text-center">Visi</h6>
@@ -246,10 +251,10 @@
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Sahkan pilihan kamu</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle"></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -290,6 +295,7 @@
               <h5><a href="https://www.github.com/widibaka">Widi Dwi Nurcahyo</a></h5>
               <br>
               <p class="mb-1"><strong>Front-end Programmer:</strong></p>
+              <h5><a href="https://www.github.com/widibaka">Widi Dwi Nurcahyo</a></h5>
               <h5><a href="https://www.github.com/widibaka">Yulidar Maulana Ivan Saputra</a></h5>
               <h5><a href="https://www.github.com/widibaka">Dika Adi Pratama</a></h5>
             </div>
@@ -300,7 +306,7 @@
       <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
           <div class="col-12 col-md">
-            <small class="d-block mb-3 text-light">PROVIDED BY HMP TI 2021 - <a class="text-warning" href="javascript:void(0)" data-toggle="modal" data-target="#ModalCredits">Credits</a></small>
+            <small class="d-block mb-3">PROVIDED BY HMPTI UDB 2021 - <a class="text-warning" href="javascript:void(0)" data-toggle="modal" data-target="#ModalCredits">Credits</a></small>
           </div>
           <!-- <div class="col-6 col-md">
             <h5>Features</h5>

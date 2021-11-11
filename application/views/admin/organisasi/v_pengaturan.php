@@ -1,20 +1,20 @@
 <!-- card secrion -->
-    <section class="h-100 w-100" style="box-sizing: border-box; background-color: #f2f6ff" id="skill">
+    <section class="h-100 w-100" style="box-sizing: border-box; background-color: transparent" id="skill">
       <div class="content-3-7 overflow-hidden container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="container mx-auto">
           <div class="d-flex flex-column text-center w-100" style="margin-bottom: 1rem">
             <h2 class="title-text">Pengaturan Organisasi</h2>
           </div>
 
-          <form enctype="multipart/form-data">
+          <?php echo form_open(base_url()."admin/organisasi/simpan_pengaturan/".$main_data['id_organisasi'],'enctype="multipart/form-data"') ?>
             <div class="form-group mb-4">
               <label for="nama_organisasi">Nama Organisasi</label>
-              <input type="text" class="form-control" id="nama_organisasi" placeholder="" name="nama_organisasi" />
+              <input type="text" class="form-control" id="nama_organisasi" placeholder="" name="nama_organisasi" value="<?php echo $main_data['nama_organisasi'] ?>" />
             </div>
             <!-- Nama Organisasi -->
             <div class="form-group mb-4">
               <label for="logo">Logo<br>
-              <img src="<?php echo base_url() ?>assets/default_logo.svg" id="preview_logo" style="width: 100%; max-width: 400px;">
+              <img src="<?php echo base_url() ?>assets/logo/<?php echo $main_data['logo'] ?>" id="preview_logo" style="width: 100%; max-width: 400px;">
               </label>
               <div class="form-group">
                 
@@ -26,23 +26,10 @@
             <!-- Logo -->
 
             <div class="form-group mb-4">
-              <label for="background_halaman">Background Halaman<br>
-              <img for="background_halaman" src='<?php echo base_url() ?>assets/pemilu/bg.jpg' id="preview_background_halaman" style="width: 100%; max-width: 400px;">
-              </label>
-              <div class="form-group">
-                
-                  <input class="form-control" name="userfile" accept="image/*" type='file' id="background_halaman" class="custom-file-input btn-lg">
-                  <small> Mendukung format svg, jpg, png, gif </small>
-                
-              </div>
-            </div>
-            <!-- Background Halaman -->
-
-            <div class="form-group mb-4">
               <label for="caption">Caption</label><br>
               <div class="form-group">
                 
-                  <textarea class="form-control" name="caption" id="" cols="30" rows="5" id="caption" placeholder="Halo selamat datang calon pemilih ...."></textarea>
+                  <textarea class="form-control" name="caption" id="" cols="30" rows="5" id="caption" placeholder="Halo selamat datang calon pemilih ...."><?php echo $main_data['caption'] ?></textarea>
                   <small> Caption ini akan muncul di halaman pemilihan dan akan dibaca oleh calon pemilih </small>
                 
               </div>
@@ -50,17 +37,17 @@
             <!-- Caption -->
             
             <div class="form-group mb-4">
-              <label for="publikasikan">Publikasikan?</label><br>
+              <label for="publikasi">Publikasikan?</label><br>
               <div class="form-group">
                 
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="publikasikan" id="flexRadioDefault1" checked>
+                    <input class="form-check-input" type="radio" name="publikasi" id="flexRadioDefault1" <?php echo ($main_data['publikasi'] == 'Ya') ? 'checked' : '' ?> value="Ya">
                     <label class="form-check-label" for="flexRadioDefault1">
                       Ya
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="publikasikan" id="flexRadioDefault2" >
+                    <input class="form-check-input" type="radio" name="publikasi" id="flexRadioDefault2" <?php echo ($main_data['publikasi'] == 'Tidak') ? 'checked' : '' ?>  value="Tidak">
                     <label class="form-check-label" for="flexRadioDefault2">
                       Tidak
                     </label>
@@ -84,7 +71,7 @@
             <div class="col-12 mb-1">
               <p class="text-center">
                 <div class="mt-2">
-                  <a href="<?php echo base_url(); ?>" class="btn btn-fill w-100">
+                  <a target="_blank" href="<?php echo base_url(); ?>ormawa/i/<?php echo str_replace(' ', "_", $main_data['nama_organisasi']); ?>" class="btn btn-fill w-100">
                     <i class="fa fa-eye"></i> Lihat Halaman Pemilihan
                   </a>
                 </div>
