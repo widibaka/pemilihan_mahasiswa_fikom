@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Organisasi extends CI_Controller {
+class Kandidat_ketua extends CI_Controller {
 
 	public function __construct()
 	{
@@ -15,56 +15,59 @@ class Organisasi extends CI_Controller {
 		
 	}
 
-	/*
-	* HALAMAN AWAL ORGANISASI
+  /*
+	* KANDIDAT
 	*/
 
-	public function index($id_organisasi = 0)
+	public function index($id_organisasi)
 	{
+		
 		$data['main_data'] = $this->ModelOrganisasi->getOrganisasiById($id_organisasi);
+		$data['title'] = $data['main_data']['nama_organisasi'];
 
+		$this->load->model("ModelKandidat");
+		$data['kandidat'] = $this->ModelKandidat->getKandidatByIdOrganisasi($id_organisasi);
 		$data['title'] = $data['main_data']['nama_organisasi'];
 
 		$this->load->view('admin/templates/header', $data);
-		$this->load->view('admin/v_organisasi', $data);
+		$this->load->view("admin/organisasi/v_kandidat_ketua", $data);
 		$this->load->view('admin/templates/footer', $data);
+		$this->load->view("admin/organisasi/v_kandidat_ketua_JS", $data);
 	}
 
-	/*
-	* PENGATURAN
-	*/
-
-	public function pengaturan($id_organisasi = 0)
+	public function hapus_kandidat($id_organisasi, $id_kandidat)
 	{
-		$data['main_data'] = $this->ModelOrganisasi->getOrganisasiById($id_organisasi);
-
-		$data['title'] = $data['main_data']['nama_organisasi'];
-
-		$this->load->view('admin/templates/header', $data);
-		$this->load->view('admin/organisasi/v_pengaturan', $data);
-		$this->load->view('admin/templates/footer', $data);
-		$this->load->view('admin/organisasi/v_pengaturan_JS', $data);
+		$this->ModelKandidat->delete($id_kandidat);
+		redirect( base_url() . 'admin/kandidat_ketua/index/' . $id_organisasi );
 	}
 
-	public function simpan_pengaturan($id_organisasi)
+	public function simpan_kandidat($id_organisasi, $id_kandidat)
 	{
 		$data = $this->input->post();
-		if ( !empty($this->do_upload()['file_name']) ) {
-			$data['logo'] = $this->do_upload()['file_name'];
+		$upload = $this->do_upload();
+		if ( !empty($upload['file_name']) ) {
+			$data['image'] = $upload['file_name'];
 		}
 
-		$this->ModelOrganisasi->update($data, $id_organisasi);
-		redirect( base_url() . 'admin/organisasi/index/' . $id_organisasi );
+		$this->ModelKandidat->update($data, $id_kandidat);
+		redirect( base_url() . 'admin/kandidat_ketua/index/' . $id_organisasi );
+	}
+
+	public function tambah_kandidat($id_organisasi)
+	{
+		$data = $this->input->post();
+		$this->ModelKandidat->add($data);
+		redirect( base_url() . 'admin/kandidat_ketua/index/' . $id_organisasi );
 	}
 
 	public function do_upload()
 	{
 		// upload
-		$config['upload_path']          = './assets/logo/';
+		$config['upload_path']          = './assets/pemilu/';
 		$config['allowed_types']        = 'svg|gif|jpg|jpeg|png';
 		$config['max_size']             = 1000;
-		$config['max_width']            = 1094;
-		$config['max_height']           = 1098;
+		$config['max_width']            = 2000;
+		$config['max_height']           = 2000;
 		$config['file_name']           = time() . '-' . rand(10,100);
 
 		$this->load->library('upload', $config);
@@ -98,12 +101,4 @@ class Organisasi extends CI_Controller {
 
 		// $this->image_lib->resize();
 	}
-
-	public function hapus_organisasi($id_organisasi)
-	{
-		$this->ModelOrganisasi->delete($id_organisasi);
-		redirect( base_url() . 'admin/welcome' );
-	}
-
-	
 }

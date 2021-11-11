@@ -11,6 +11,16 @@ class Ormawa extends CI_Controller {
 		$this->load->model('ModelOrganisasi');
 	}
 
+	public function index()
+	{
+		// start	
+		$data['page_title'] = "Pemilihan Ketua Ormawa 2022 Fikom Universitas Duta Bangsa";
+
+		$data['organisasi'] = $this->ModelOrganisasi->getAll();
+
+		$this->load->view('end_user/intro', $data);
+	}
+
 	public function i($nama_organisasi)
 	{
 		//**

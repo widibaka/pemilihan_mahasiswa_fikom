@@ -5,7 +5,7 @@ class ModelOrganisasi extends CI_Model {
 	public $table = 'pemilwa_organisasi';
 	public function getAll()
 	{
-		$this->db->order_by('id_organisasi', 'ASC'); 
+		$this->db->order_by('nama_organisasi', 'ASC'); 
 		return $this->db->get( $this->table )->result_array();
 	}
 	public function getOrganisasiByNamaOrganisasi($nama_organisasi)
@@ -22,25 +22,16 @@ class ModelOrganisasi extends CI_Model {
 	}
 	public function add($data)
 	{
-		$data['email'] = $data['email'] . '@admin.hmpti';
-		$data['admin'] = 1;
-		$data['waktu_daftar'] = time();
-		$data['photo'] = 'user_no_image.jpg';
 		$this->db->insert($this->table, $data);
-
-		// data 2, untuk ngisi tabel admin. Ini tabel gunanya buat apa saya lupa tapi seingatku ini penting
-		$data2 = [
-			'id_user' => $data['id_user']
-		];
-		$this->db->insert('galeri_admin', $data2);
 	}
 	public function update($data, $id_organisasi)
 	{
 		$this->db->where('id_organisasi', $id_organisasi);
 		$this->db->update($this->table, $data);
 	}
-	public function delete($data)
+	public function delete($id_organisasi)
 	{
-		$this->db->insert($this->table, $data);
+		$this->db->where('id_organisasi', $id_organisasi);
+		$this->db->delete($this->table);
 	}
 }

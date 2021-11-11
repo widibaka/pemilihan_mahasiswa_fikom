@@ -9,22 +9,18 @@ class ModelKandidat extends CI_Model {
 		$this->db->where('id_organisasi', $id_organisasi);
 		return $this->db->get( $this->table )->result_array();
 	}
-	public function add_admin($data)
+	public function update($data, $id_kandidat)
 	{
-		$data['email'] = $data['email'] . '@admin.hmpti';
-		$data['admin'] = 1;
-		$data['waktu_daftar'] = time();
-		$data['photo'] = 'user_no_image.jpg';
-		$this->db->insert($this->table, $data);
-
-		// data 2, untuk ngisi tabel admin. Ini tabel gunanya buat apa saya lupa tapi seingatku ini penting
-		$data2 = [
-			'id_user' => $data['id_user']
-		];
-		$this->db->insert('galeri_admin', $data2);
+		$this->db->where('id_kandidat', $id_kandidat);
+		$this->db->update($this->table, $data);
 	}
-	public function delete($data)
+	public function add($data)
 	{
 		$this->db->insert($this->table, $data);
+	}
+	public function delete($id_kandidat)
+	{
+		$this->db->where('id_kandidat', $id_kandidat);
+		$this->db->delete($this->table);
 	}
 }

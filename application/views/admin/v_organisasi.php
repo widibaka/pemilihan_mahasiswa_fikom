@@ -14,7 +14,7 @@
           </p>
 
           <div class="col-11">
-            <a href="<?php echo base_url(); ?>admin/organisasi/kandidat_ketua/<?php echo $main_data['id_organisasi']; ?>" class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button">
+            <a href="<?php echo base_url(); ?>admin/kandidat_ketua/index/<?php echo $main_data['id_organisasi']; ?>" class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button">
               <span class="fa fa-user-circle"></span>
               <span>Kandidat Ketua</span>
             </a>
@@ -102,25 +102,3 @@
       </div>
     </section>
     <!-- end card section -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="md-form mb-6">
-              <label for="nama_organisasi">Nama Organisasi</label>
-              <input type="text" id="nama_organisasi" placeholder="Estetika ..." required class="form-control mt-1">
-            </div>
-          </div>
-          <p class="text-center">
-            <a class="btn btn-warning justify-content-center align-items-center w-50" href="#" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- End Modal -->

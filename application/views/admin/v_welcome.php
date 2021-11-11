@@ -79,15 +79,17 @@
             <h5 class="modal-title"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <div class="md-form mb-6">
-              <label for="nama_organisasi">Nama Organisasi</label>
-              <input type="text" id="nama_organisasi" placeholder="Estetika ..." required class="form-control mt-1">
+          <?php echo form_open( base_url() . 'admin/welcome/tambah_ormawa' ) ?>
+            <div class="modal-body">
+              <div class="md-form mb-6">
+                <label for="nama_organisasi">Nama Organisasi</label>
+                <input type="text" name="nama_organisasi" id="nama_organisasi" placeholder="Estetika ..." required class="form-control mt-1">
+              </div>
             </div>
-          </div>
-          <p class="text-center">
-            <a class="btn btn-warning justify-content-center align-items-center w-50" href="#" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah</a>
-          </p>
+            <p class="text-center">
+              <button type="submit" class="btn btn-warning justify-content-center align-items-center shadow">Create</button>
+            </p>
+          </form>
         </div>
       </div>
     </div>

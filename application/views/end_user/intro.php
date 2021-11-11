@@ -212,9 +212,10 @@
       <h5 class="my-0 mr-md-auto font-weight-normal">HMP Teknik Informatika</h5>
     </div> -->
 
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4"><?php echo $organisasi['nama_organisasi'] ?></h1>
-      <p class="lead"><?php echo $organisasi['caption'] ?></p>
+    <div class="pricing-header px-4 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <img class="my-3" src="<?php echo base_url() ?>assets/logo/logo_kpum.png" alt="Logo KPUM" style="height: 120px;">
+      <h1 class="display-5">Pemilihan Umum Mahasiswa</h1>
+      <p class="lead">Pemilihan Serentak Ketua Organisasi Mahasiswa Fakultas Ilmu Komputer Universitas Duta Bangsa</p>
     </div>
 
 
@@ -226,62 +227,31 @@
 
       <div class="row mb-3 text-center d-flex justify-content-center">
       
-        <?php foreach ($kandidat as $key => $val): ?>
-          <div class="card box-shadow m-2" style="width: 390px; cursor: pointer; border: 0px solid black;" data-toggle="modal" data-target="#exampleModalCenter" onclick="show_modal('<?php echo $val['id_kandidat'] ?>')">
-            <div class="foto_<?php echo $val['id_kandidat'] ?> p-3 rounded">
-              <div class="foto rounded" style="background-image: url('<?php echo base_url() . 'assets/pemilu/' . $val['image'] ?>'); border: 0px solid black;">
-              
+        <?php foreach ($organisasi as $key => $val): ?>
+          
+          <?php if ( $val['publikasi'] == 'Ya' ): // kalau gak dipublikasikan, jangan ditampilkan ?>
+
+            <a href="<?php echo base_url(); ?>ormawa/i/<?php echo str_replace(' ', "_", $val['nama_organisasi']); ?>" class="card box-shadow m-2" style="width: 390px; cursor: pointer; border: 0px solid black; color: #1e1e1e; text-decoration:none;">
+              <div class="foto_<?php echo $val['id_organisasi'] ?> p-3 rounded">
+                <div class="foto rounded" 
+                style="
+                    background-image: url('<?php echo base_url() . 'assets/logo/' . $val['logo'] ?>'); 
+                    border: 0px solid black; 
+                    background-size: contain; 
+                    background-repeat: no-repeat;">
+                
+                </div>
               </div>
-            </div>
-            <div class="card-body <?php echo $val['id_kandidat'] ?>">
-              <h3 class="card-title pricing-card-title nama_panjang text-center"><?php echo $val['nama_kandidat'] ?></h3>
-              <div class="visi_misi d-none">
-                <p>
-                  <h6 class="text-center">Visi</h6>
-                  <?php echo $val['visi'] ?>
-                </p>
-                <p>
-                  <h6 class="text-center">Misi</h6>
-                  <?php echo $val['misi'] ?>
-                </p>
+              <div class="card-body">
+                <h3 class="card-title pricing-card-title nama_panjang text-center"><?php echo $val['nama_organisasi'] ?></h3>
               </div>
-              <!-- <button type="button" class="btn btn-lg btn-block btn-danger">Pilih</button> -->
-            </div>
-          </div>
-          <!-- Satu item -->
+            </a>
+            <!-- Satu item -->
+
+          <?php endif ?>
+
         <?php endforeach ?>
 
-      </div>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="container w-100 text-center">
-                <img width="100%" src="" class="modal_foto" alt="">
-              </div>
-              <h2 class="card-title pricing-card-title modal_nama_panjang my-1 text-center"></h2>
-              <div class="modal_visi_misi container">
-              </div>
-              <hr>
-              <?php echo form_open( base_url() . 'pemilwa/pass/' ) ?>
-                <textarea name='auth_url' id="auth_url" class="d-none" required=""></textarea>
-                <input type="hidden" name="pilihan" value="" id="pilihan" type="hidden" required="">
-                <button type="submit" class="btn btn-lg btn-block mb-4 text-dark myGlower"> <img style="width: 30px;" src="https://developers.google.com/identity/images/g-logo.png"> Sign in with Google</button>
-              </form>
-              <p class=" container">
-                <i>Kirimkan dukungan kamu dengan sign in memakai akun google <strong>@fikom.udb.ac.id</strong> atau <strong>@mhs.udb.ac.id</strong> khusus mahasiswa Universitas Duta Bangsa.</i>
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Modal -->
@@ -296,7 +266,7 @@
             </div>
             <div class="modal-body text-center">
               <p class="mb-1"><strong>Back-end Programmer:</strong></p>
-              <h5><a href="https://www.github.com/widibaka">Widi Dwi Nurcahyo</a></h5>
+              <h5><a href="https://www.instagram.com/widi_baka">Widi Dwi Nurcahyo</a></h5>
               <br>
               <p class="mb-1"><strong>Front-end Programmer:</strong></p>
               <h5><a href="https://www.instagram.com/widi_baka/">Widi Dwi Nurcahyo</a></h5>
@@ -312,12 +282,7 @@
           <div class="col-12 col-md">
             <small class="d-block mb-3">PROVIDED BY HMPTI UDB 2021 - <a class="text-primary" href="javascript:void(0)" data-toggle="modal" data-target="#ModalCredits">Credits</a></small>
           </div>
-          <!-- <div class="col-6 col-md">
-            <h5>Features</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="https://getbootstrap.com/docs/4.0/examples/pricing/#">Cool stuff</a></li>
-            </ul>
-          </div> -->
+          
         </div>
       </footer>
     </div>
@@ -337,30 +302,9 @@
     <script src='https://rawgit.com/JulianLaval/canvas-particle-network/master/particle-network.min.js'></script>
     <script  src="<?= base_url() ?>assets/particle_animation/script.js"></script>
 
-    <script type="text/javascript">
-      function show_modal(index) {
-        var nama_panjang = $('.'+index+' .nama_panjang').html();
-        var foto = $('.foto_'+index).find('.foto').css('background-image');
-        foto = foto.replace('url("', '');
-        foto = foto.replace('")', '');
-        // console.log(foto);
-        
-        var kohousha_no_namae = $('.'+index+' .kohousha_no_namae').html();
-        var visi_misi = $('.'+index+' .visi_misi').html();
-
-        var auth_url = '<?php echo $auth_url ?>';
-
-
-        $('.modal_nama_panjang').html(nama_panjang);
-        $('.modal_foto').attr('src', foto);
-        $('#pilihan').val(kohousha_no_namae);
-        $('#auth_url').val(auth_url);
-        $('.modal_visi_misi').html(visi_misi);
-      }
-
+    <script>
       // Saat loaded, maka sembunyikan loader
       $(document).ready(function() {
         $('.loading').fadeOut('slow');
       })
     </script>
-  

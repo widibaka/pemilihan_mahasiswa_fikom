@@ -15,15 +15,7 @@ class Welcome extends CI_Controller {
 	}
 	public function index()
 	{
-		$post = $this->input->post();
-		if ( $post ) {
-			$this->AdminModel->add_admin( $post );
-			redirect( base_url() . $this->uri->uri_string() );
-		}
 		$data['title'] = 'Admin';
-		// $data['userdata'] = $this->AuthModel->get_user(
-		// 	$this->session->userdata('id_user')
-		// );
 
 		$data['organisasi'] = $this->ModelOrganisasi->getAll();
 
@@ -31,6 +23,17 @@ class Welcome extends CI_Controller {
 		$this->load->view('admin/v_welcome', $data);
 		$this->load->view('admin/templates/footer', $data);
 		$this->load->view('admin/v_welcome_JS', $data);
+	}
+
+	public function tambah_ormawa()
+	{
+		$this->load->model('ModelOrganisasi');
+	
+		$data = $this->input->post();
+
+		$this->ModelOrganisasi->add($data);
+		redirect( base_url() . 'admin/welcome/' );
+
 	}
 
 

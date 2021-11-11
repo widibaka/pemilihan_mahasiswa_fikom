@@ -77,6 +77,19 @@
                 </div>
               </p>
             </div>
+            <!-- Lihat halaman -->
+
+            <div class="col-12 mb-1">
+              <p class="text-center">
+                <div class="mt-2">
+                  <a onclick="return confirm('Anda yakin ingin menghapus?')" href="<?php echo base_url(); ?>admin/organisasi/hapus_organisasi/<?php echo $main_data['id_organisasi']; ?>" class="btn btn-danger w-100 py-3">
+                    <i class="fa fa-trash"></i> Hapus Organisasi
+                  </a>
+                </div>
+              </p>
+            </div>
+            <!-- Hapus -->
+            
           </form>
         </div>
       </div>

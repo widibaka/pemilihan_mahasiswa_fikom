@@ -160,7 +160,7 @@
     <section id="skill">
       <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light shadow">
         <div class="container-fluid container">
-          <a class="navbar-brand" href="#">Menu</a>
+          <a class="navbar-brand" href="#">KPUM UDB</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -171,6 +171,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="<?php echo base_url(); ?>admin/settings#">Settings</a>
+              </li>
+              <li class="nav-item">
+                <a target="_blank" class="nav-link" aria-current="page" href="<?php echo base_url(); ?>">Halaman Depan</a>
               </li>
             </ul>
           </div>
