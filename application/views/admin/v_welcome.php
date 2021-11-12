@@ -7,6 +7,11 @@
             </h2>
             <p class="caption-text mx-auto">
               Platform Pemilihan Ketua Ormawa Fikom UDB
+              <br>
+              <br>
+              Jadwal:
+              <?php echo date("d/m/Y H:i:s", strtotime($settings['tanggal_mulai'])) ?> - 
+              <?php echo date("d/m/Y H:i:s", strtotime($settings['tanggal_selesai'])) ?>
             </p>
           </div>
 

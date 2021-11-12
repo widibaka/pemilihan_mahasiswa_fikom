@@ -28,6 +28,7 @@
       .myGlower {
         background-color: #fff;
           z-index: -1;
+          animation: glow 500ms infinite alternate;  
           -webkit-animation: glow 500ms infinite alternate;  
            -webkit-transition: border 1.0s linear, box-shadow 1.0s linear;
              -moz-transition: border 1.0s linear, box-shadow 1.0s linear;

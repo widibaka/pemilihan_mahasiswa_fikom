@@ -17,6 +17,8 @@ class Welcome extends CI_Controller {
 	{
 		$data['title'] = 'Admin';
 
+		$data['settings'] = $this->SettingsModel->get_settings();
+
 		$data['organisasi'] = $this->ModelOrganisasi->getAll();
 
 		$this->load->view('admin/templates/header', $data);

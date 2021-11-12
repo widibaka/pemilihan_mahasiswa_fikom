@@ -177,13 +177,21 @@ class Ormawa extends CI_Controller {
 	}
 
 
-	public function statistik()
+	public function statistik($id_organisasi)
 	{
-		$data['page_title'] = "Dashboard Pemilwa";
-		$this->db->order_by('jikan', 'DESC');
-		$data['yuukensha'] = $this->db->get('pemilwa_hmp_yuukensha')->result_array();
-		$data['statistik'] = $this->HmpModel->hitung_jumlah_suara();
-		$this->load->view('admin', $data);
+		$data['page_title'] = "Hasil Pemilihan";
+		$this->db->order_by('waktu', 'DESC');
+
+		$this->db->from('pemilwa_pemilih');
+		$this->db->select('id_pemilih, nama_pemilih, prodi, angkatan, waktu, pemilwa_pemilih.id_kandidat, nama_kandidat,');
+		$this->db->join('pemilwa_kandidat', 'pemilwa_pemilih.id_kandidat = pemilwa_kandidat.id_kandidat');
+		$data['yuukensha'] = $this->db->get()->result_array();
+		
+		$data['organisasi'] = $this->ModelOrganisasi->getOrganisasiById($id_organisasi);
+
+		$data['statistik'] = $this->HmpModel->hitung_jumlah_suara( $id_organisasi );
+
+		$this->load->view('end_user/statistik', $data);
 	}
 
 }

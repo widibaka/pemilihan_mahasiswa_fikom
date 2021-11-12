@@ -29,6 +29,7 @@
       .myGlower {
         background-color: #fff;
           z-index: -1;
+          animation: glow 500ms infinite alternate;  
           -webkit-animation: glow 500ms infinite alternate;  
            -webkit-transition: border 1.0s linear, box-shadow 1.0s linear;
              -moz-transition: border 1.0s linear, box-shadow 1.0s linear;
@@ -216,6 +217,14 @@
       <h1 class="display-4"><?php echo $organisasi['nama_organisasi'] ?></h1>
       <img class="my-1" src="<?php echo base_url() ?>assets/logo/<?php echo $organisasi['logo'] ?>" alt="Logo Ormawa" style="height: 120px;">
       <p class="lead"><?php echo $organisasi['caption'] ?></p>
+      <p class="lead">
+        Pemilih: 
+            <?php echo (!empty($organisasi['si'])) ? '(SI) ' : '' ?>
+            <?php echo (!empty($organisasi['mi'])) ? '(MI) ' : '' ?>
+            <?php echo (!empty($organisasi['ti'])) ? '(TI) ' : '' ?>
+            <?php echo (!empty($organisasi['tk'])) ? '(TK) ' : '' ?>
+            <?php echo (!empty($organisasi['email_khusus'])) ? '(Tertentu) ' : '' ?>
+      </p>
     </div>
 
 

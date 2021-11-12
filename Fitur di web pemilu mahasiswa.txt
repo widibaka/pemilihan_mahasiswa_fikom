@@ -5,4 +5,10 @@ Opsi calon pemilih:
 - TK 04
 - Custom (add email)
 
-uji coba seluruh prodi oke?
+uji coba seluruh prodi oke? Udah!
+
+Login admin
+
+Login log
+
+Waktu pelaksanaan

@@ -25,13 +25,13 @@
             </a>
           </div>
           <div class="col-12 mt-2" style="display: none;" id="keterangan-kandidat-ketua">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+            <p>Kandidat Ketua dapat diubah dan disesuaikan memakai fitur ini.</p>
           </div>
           <hr style="opacity: 0;">
           <!-- Satu item -->
 
           <div class="col-11">
-            <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <a target="_blank" href="<?php echo base_url(); ?>ormawa/statistik/<?php echo $main_data['id_organisasi']; ?>" class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button">
               <span class="fa fa-chart-pie"></span>
               <span>Hasil Pemilihan</span>
             </a>
@@ -42,7 +42,7 @@
             </a>
           </div>
           <div class="col-12 mt-2" style="display: none;" id="keterangan-hasil-pemilihan">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+            <p>Halaman hasil pemilihan untuk ormawa ini dapat dilihat dengan menekan tombol di atas. Bisa juga dipakai untuk mengawasi jumlah perolehan suara secara real-time.</p>
           </div>
           <hr style="opacity: 0;">
           <!-- Satu item -->
@@ -59,7 +59,7 @@
             </a>
           </div>
           <div class="col-12 mt-2" style="display: none;" id="keterangan-lihat-halaman">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+            <p>Ini adalah tombol jalan pintas menuju halaman pemilihan ketua untuk organisasi ini.</p>
           </div>
           <hr style="opacity: 0;">
           <!-- Satu item -->
@@ -76,7 +76,7 @@
             </a>
           </div>
           <div class="col-12 mt-2" style="display: none;" id="keterangan-peserta-pemilihan">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+            <p>Peserta pemilihan dapat diubah dan disesuaikan memakai fitur ini. Peserta pemilihan dapat disaring menurut prodi dan dapat pula menyusun daftar email khusus bagi ormawa yang ingin mengadakan pemilihan secara internal.</p>
           </div>
           <hr style="opacity: 0;">
           <!-- Satu item -->
@@ -93,7 +93,7 @@
             </a>
           </div>
           <div class="col-12 mt-2" style="display: none;" id="keterangan-pengaturan">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem tempora fugiat laudantium hic facilis aliquam odit deleniti, dolorem pariatur et nihil veniam voluptatum accusamus fugit! Alias eveniet unde molestiae exercitationem?</p>
+            <p>Nama ormawa, logo, status publikasi, dan caption untuk halaman pemilihan dapat diubah di fitur ini.</p>
           </div>
           <hr style="opacity: 0;">
           <!-- Satu item -->

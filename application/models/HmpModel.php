@@ -178,40 +178,24 @@ class HmpModel extends CI_Model
 		];
 		$this->db->insert('pemilwa_pemilih', $data);
 	}
-	public function hitung_jumlah_suara( )
+	public function hitung_jumlah_suara( $id_organisasi )
 	{
-		$data = $this->db->get('pemilwa_pemilih')->result_array();
-		$andreas = 0;
-		$matin = 0;
-		$rifqi = 0;
-		$seluruh = count($data);
+		
 
-		foreach ($data as $key => $value) {
-			if ( $value['kohousha_index'] !== 'karappo' ) {
-				$explode = explode( '[-spt-]', base64_decode($value['kohousha_index']));
-				if ( $explode[1] == 'Andreas' ) {
-					$andreas++;
-				}
-				elseif ( $explode[1] == 'Matin' ) {
-					$matin++;
-				}
-				elseif ( $explode[1] == 'Rifqi' ) {
-					$rifqi++;
-				}
-			}
+		// ambil data kandidat
+		$this->load->model('ModelKandidat');
+		$data_kandidat = $this->ModelKandidat->getKandidatByIdOrganisasi( $id_organisasi );
+		// substitusikan jumlah suara untuk tiap kandidat
+		foreach ($data_kandidat as $key => $val) {
+			$this->load->model('ModelPemilih');
+			$data_kandidat[$key]['jumlah_suara'] = $this->ModelPemilih->hitung_suara_per_kandidat( $val['id_kandidat'] );
 		}
 
-		$suara_masuk = $andreas + $matin + $rifqi;
-		$golput = $seluruh - $suara_masuk;
-
-		$hasil = [
-			'andreas' => $andreas,
-			'matin' => $matin,
-			'rifqi' => $rifqi,
-			'suara_masuk' => $suara_masuk,
-			'seluruh' => $seluruh,
-			'golput' => $golput,
-		];
+		$hasil['data_kandidat'] = $data_kandidat;
+		
+		$this->db->where('id_organisasi', $id_organisasi);
+		$query = $this->db->get('pemilwa_pemilih');
+		$hasil['seluruh'] = $query->num_rows();
 
 		return $hasil;
 	}

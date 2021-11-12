@@ -29,6 +29,7 @@
       .myGlower {
         background-color: #fff;
           z-index: -1;
+          animation: glow 500ms infinite alternate;  
           -webkit-animation: glow 500ms infinite alternate;  
            -webkit-transition: border 1.0s linear, box-shadow 1.0s linear;
              -moz-transition: border 1.0s linear, box-shadow 1.0s linear;
@@ -38,8 +39,8 @@
         background-color: #eee;
       }
       .foto{
-        height: 300px;
-        background-size: cover;
+        height: 200px;
+        background-size: contain;
         background-position: center;
       }
       .glow{
@@ -231,8 +232,8 @@
           
           <?php if ( $val['publikasi'] == 'Ya' ): // kalau gak dipublikasikan, jangan ditampilkan ?>
 
-            <a href="<?php echo base_url(); ?>ormawa/i/<?php echo str_replace(' ', "_", $val['nama_organisasi']); ?>" class="card box-shadow m-2" style="width: 390px; cursor: pointer; border: 0px solid black; color: #1e1e1e; text-decoration:none;">
-              <div class="foto_<?php echo $val['id_organisasi'] ?> p-3 rounded">
+            <a href="<?php echo base_url(); ?>ormawa/i/<?php echo str_replace(' ', "_", $val['nama_organisasi']); ?>" class="col-5 col-md-3 card box-shadow m-2" style="cursor: pointer; border: 0px solid black; color: #1e1e1e; text-decoration:none;">
+              <div class="foto_<?php echo $val['id_organisasi'] ?> pt-2 rounded">
                 <div class="foto rounded" 
                 style="
                     background-image: url('<?php echo base_url() . 'assets/logo/' . $val['logo'] ?>'); 
@@ -242,8 +243,8 @@
                 
                 </div>
               </div>
-              <div class="card-body">
-                <h3 class="card-title pricing-card-title nama_panjang text-center"><?php echo $val['nama_organisasi'] ?></h3>
+              <div class="card-body p-0">
+                <h3 class="card-title text-center" style="font-size: 1.28rem;"><?php echo $val['nama_organisasi'] ?></h3>
               </div>
             </a>
             <!-- Satu item -->
