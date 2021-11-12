@@ -96,14 +96,14 @@ class Ormawa extends CI_Controller {
 	    if ( !empty($pay_load) ) {
 			
 	    	if ( empty($_SESSION['nim_mahasiswa']) ) {
-					$this->HmpModel->set_alert('danger', 'Maaf '. ucwords(strtolower($pay_load['name'])) .', session kamu sudah habis karena terlalu lama. Silakan ulangi kembali.');
+					$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', session kamu sudah habis karena terlalu lama. Silakan ulangi kembali.');
 	        redirect( base_url() );
 				}
 			
-	    	$check_sudah_memilih = $this->HmpModel->check_email_sudah_memilih($pay_load["email"]);
+	    	$check_sudah_memilih = $this->HmpModel->check_email_sudah_memilih($pay_load["email"], $_SESSION['id_organisasi']);
 	    	if ( $check_sudah_memilih ) 
 	    	{
-	    		$this->HmpModel->set_alert('danger', 'Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu hanya bisa memilih satu kali! :(');
+	    		$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu hanya bisa memilih satu kali untuk setiap organisasi. 😥');
 	        $this->HmpModel->refresh();
 	    	}
 
@@ -113,7 +113,7 @@ class Ormawa extends CI_Controller {
 				// kalau bener-bener di pilihan prodi dan email khusus enggak ada, maka kasih alert!
 	    	if ( $check_prodi == false && $check_email_khusus == false )
 	    	{
-	    		$this->HmpModel->set_alert('danger', 'Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu tidak terdaftar sebagai pemilik hak pilih! :(');
+	    		$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu tidak terdaftar sebagai pemilik hak pilih! 😥');
 					$this->HmpModel->refresh();
 	    	}
 				// Pilihan siapa yang punya hak pilih END
@@ -123,16 +123,15 @@ class Ormawa extends CI_Controller {
 						$check_email_udb = $this->HmpModel->check_email_udb($pay_load["email"]);
 						if ( $check_email_udb == false )
 						{
-							$this->HmpModel->set_alert('danger', 'Maaf, tolong gunakan email mahasiswa Universitas Duta Bangsa.');
+							$this->HmpModel->set_alert('danger', '⚠️Maaf, tolong gunakan email mahasiswa Universitas Duta Bangsa.');
 							$this->HmpModel->refresh();
 						}
 				}
 				// Check apakah email udb END
 	    	
 
-				$id_kandidat = $_SESSION['id_kandidat']; // ngambil dari session
-				if ( $this->HmpModel->check_kandidat_benar($id_kandidat) == false ) {
-					$this->HmpModel->set_alert('danger', 'Fatal Error! Silakan coba lagi.'); // <-- untuk testing
+				if ( $this->HmpModel->check_kandidat_benar( $_SESSION['id_kandidat'] ) == false ) {
+					$this->HmpModel->set_alert('danger', '⚠️Fatal Error! Silakan coba lagi.'); // <-- untuk testing
 					$this->HmpModel->refresh();
 				}
 				else{
@@ -144,10 +143,11 @@ class Ormawa extends CI_Controller {
 						'prodi' => $this->HmpModel->nim_2_prodi( $_SESSION['nim_mahasiswa'] ),
 						'angkatan' => $this->HmpModel->nim_2_angkatan( $_SESSION['nim_mahasiswa'] ),
 						'waktu' => date( 'Y-m-d H:i:s' ),
-						'id_kandidat' => $id_kandidat,
+						'id_kandidat' => $_SESSION['id_kandidat'],
+						'id_organisasi' => $_SESSION['id_organisasi'],
 					];
 					$this->HmpModel->add_yuukensha($data_pemilih);
-					$this->HmpModel->set_alert('success', 'Terima kasih sudah memberikan satu vote yang berharga, '. ucwords(strtolower($pay_load['name'])) .' :)');
+					$this->HmpModel->set_alert('success', 'Terima kasih sudah memberikan satu vote yang berharga, '. ucwords(strtolower($pay_load['name'])) .' 😁');
 						$this->HmpModel->refresh();
 				}
 	    

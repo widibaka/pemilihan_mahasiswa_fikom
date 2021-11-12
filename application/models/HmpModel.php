@@ -15,12 +15,13 @@ class HmpModel extends CI_Model
 		$this->session->set_flashdata('alert', '<div class="alert alert-' . $jenis . '" role="alert">' . $pesan . '</div>');
 	}
 
-	public function check_email_sudah_memilih($email)
+	public function check_email_sudah_memilih($email, $id_organisasi)
 	{
+		$this->db->where('id_organisasi', $id_organisasi);
 		$yuukensha = $this->db->get('pemilwa_pemilih')->result_array();
 		$status = false;
-		foreach ($yuukensha as $key => $value) {
-			if ( $value == $email ) {
+		foreach ($yuukensha as $key => $pemilih) {
+			if ( $pemilih['email'] == $email ) {
 				$status = true;
 			}
 		}
@@ -87,6 +88,41 @@ class HmpModel extends CI_Model
 		return $status;
 	}
 
+	public function nim_2_prodi($nim)
+	{
+		// cari tahu prodi dari si pemilih
+		$kode_prodi = substr($nim, 4, 2);
+		$prodi = $this->get_prodi_from_kode($kode_prodi);
+
+		switch ($prodi) {
+			case 'si':
+				return '(SI) S1 - Sistem Informasi';
+				break;
+			case 'mi':
+				return '(MI) D3 - Manajemen Informatika';
+				break;
+			case 'ti':
+				return '(TI) S1 - Teknik Informatika';
+				break;
+			case 'tk':
+				return '(TK) D3 - Teknik Komputer';
+				break;
+			default:
+				echo "ERROR! Saat mengubah nim menjadi Prodi. Silakan check kembali nim Anda."; die;
+				break;
+			
+		}
+
+	}
+
+	public function nim_2_angkatan($nim)
+	{
+		// cari tahu prodi dari si pemilih
+		$kode_angkatan = substr($nim, 0, 2);
+		return $kode_angkatan;
+
+	}
+
 	public function check_kandidat_benar($id_kandidat)
 	{
 		$kohousha = $this->db->get('pemilwa_kandidat')->result_array();
@@ -132,12 +168,13 @@ class HmpModel extends CI_Model
 	{
 		$data = [
 			'email' => $data['email'],
-			'nama_pemilih' => base64_encode($data['nama']),
+			'nama_pemilih' => $data['nama_pemilih'],
 			'nim_mahasiswa' => $data['nim_mahasiswa'],
 			'prodi' => $data['prodi'],
 			'angkatan' => $data['angkatan'],
 			'id_kandidat' => $data['id_kandidat'],
-			'waktu' => time(),
+			'id_organisasi' => $data['id_organisasi'],
+			'waktu' => $data['waktu'],
 		];
 		$this->db->insert('pemilwa_pemilih', $data);
 	}

@@ -65,7 +65,7 @@
           <!-- Satu item -->
 
           <div class="col-11">
-            <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <a href="<?php echo base_url(); ?>admin/peserta_pemilihan/index/<?php echo $main_data['id_organisasi'] ?>" class="btn btn-fill justify-content-center align-items-center w-100 shadow">
               <span class="fa fa-users-cog"></span>
               <span>Peserta Pemilihan</span>
             </a>

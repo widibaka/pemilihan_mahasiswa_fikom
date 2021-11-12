@@ -214,6 +214,7 @@
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1 class="display-4"><?php echo $organisasi['nama_organisasi'] ?></h1>
+      <img class="my-1" src="<?php echo base_url() ?>assets/logo/<?php echo $organisasi['logo'] ?>" alt="Logo Ormawa" style="height: 120px;">
       <p class="lead"><?php echo $organisasi['caption'] ?></p>
     </div>
 
