@@ -7,10 +7,10 @@ class Welcome extends CI_Controller {
 	{
 		parent::__construct();
 
-		// if ( !$this->session->userdata('username') ) {
-		// 	$this->session->set_flashdata( 'msg', 'error#Session Anda telah habis' );
-		// 	redirect( base_url() . 'auth/login' );
-		// }
+		if ( !$this->session->userdata('nama_admin') ) {
+			$this->HmpModel->set_alert('danger', '⚠️ Session Anda telah habis.');
+			redirect( base_url() . 'admin/auth/login' );
+		}
 		
 	}
 	public function index()

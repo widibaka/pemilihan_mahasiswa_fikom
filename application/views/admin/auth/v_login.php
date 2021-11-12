@@ -49,16 +49,21 @@
   <body class="text-center">
     
 <main class="form-signin">
+  
   <?php echo form_open( '' ) ?>
     <img class="mb-4" src="<?php echo base_url(); ?>assets/logo/logo_kpum.png" alt="" width="72" >
     <h1 class="h3 mb-3 fw-normal">Please Login</h1>
 
+    <?php if ( $this->session->flashdata('alert') ) {
+        echo $this->session->flashdata('alert');
+      } ?>
+
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="xx" name="nama_admin">
+      <input type="text" class="form-control" id="floatingInput" placeholder="xx" name="nama_admin" required>
       <label for="floatingInput">Username</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="xx" name="password">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="xx" name="password" required>
       <label for="floatingPassword">Password</label>
     </div>
 

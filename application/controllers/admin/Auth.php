@@ -9,21 +9,26 @@ class Auth extends CI_Controller {
 	}
 	public function login()
 	{
+		$this->load->model('HmpModel');
+		$this->load->model('AdminModel');
 		if ( $this->input->post() ) {
-			$check_result = $this->AuthModel->check_user( $this->input->post() );
+			$check_result = $this->AdminModel->check_user( $this->input->post() );
 			if ($check_result) {
 
-				// Check apakah ini seornag admin
-				if ( strpos($check_result['email'], '@admin') != false ) {
-					$check_result['admin'] = 'mantap-mantap';
-				}
 				// Memulai session
 				$this->session->set_userdata($check_result);
-				redirect(base_url());
+
+				// tulis di login log
+				$this->db->insert('pemilwa_login_log', [
+					'nama_admin' => $check_result['nama_admin'],
+					'waktu' => date('Y-m-d H:i:s'),
+				]);
+
+				redirect(base_url() . 'admin/welcome');
 			}
 			if (!$check_result) {
-				$this->session->set_flashdata('msg', 'error#Login gagal');
-				redirect(base_url() . 'admin/auth/login' );
+				$this->HmpModel->set_alert('danger', '⚠️ Error! Silakan coba lagi.'); // <-- untuk testing
+				$this->HmpModel->refresh();
 			}
 		}
 

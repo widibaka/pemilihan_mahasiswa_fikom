@@ -175,6 +175,9 @@
               <li class="nav-item">
                 <a target="_blank" class="nav-link" aria-current="page" href="<?php echo base_url(); ?>">Halaman Depan</a>
               </li>
+              <li class="nav-item">
+                <a onclick="return confirm('Anda yakin ingin logout?')" class="nav-link" aria-current="page" href="<?php echo base_url(); ?>admin/auth/logout">Logout</a>
+              </li>
             </ul>
           </div>
         </div>

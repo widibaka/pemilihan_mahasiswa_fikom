@@ -131,7 +131,7 @@ class Ormawa extends CI_Controller {
 	    	
 
 				if ( $this->HmpModel->check_kandidat_benar( $_SESSION['id_kandidat'] ) == false ) {
-					$this->HmpModel->set_alert('danger', '⚠️Fatal Error! Silakan coba lagi.'); // <-- untuk testing
+					$this->HmpModel->set_alert('danger', '⚠️Fatal Error! Silakan coba lagi.');
 					$this->HmpModel->refresh();
 				}
 				else{
