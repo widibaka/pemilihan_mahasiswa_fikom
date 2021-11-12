@@ -185,6 +185,8 @@ class Ormawa extends CI_Controller {
 		$this->db->limit($limit);
 		$this->db->order_by('waktu', 'DESC');
 
+		$this->db->where('id_organisasi', '$id_organisasi');
+
 		$this->db->from('pemilwa_pemilih');
 		$this->db->select('id_pemilih, nama_pemilih, prodi, angkatan, waktu, pemilwa_pemilih.id_kandidat, nama_kandidat,');
 		$this->db->join('pemilwa_kandidat', 'pemilwa_pemilih.id_kandidat = pemilwa_kandidat.id_kandidat');
