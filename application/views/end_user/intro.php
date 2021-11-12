@@ -15,6 +15,10 @@
 
     <!-- Custom styles for this template -->
     <link href="<?= base_url('assets/pemilu') ?>/Offcanvas_files/pricing.css" rel="stylesheet">
+
+    <!-- MD Toast -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>/assets/@dmuy/toast/dist/mdtoast.min.css">
+    
     <style type="text/css">
       @-webkit-keyframes glow {
           to {
@@ -302,6 +306,9 @@
     <!-- animasi particle network -->
     <script src='https://rawgit.com/JulianLaval/canvas-particle-network/master/particle-network.min.js'></script>
     <script  src="<?= base_url() ?>assets/particle_animation/script.js"></script>
+
+    <!-- MD TOAST -->
+    <?php $this->load->view('toast') ?>
 
     <script>
       // Saat loaded, maka sembunyikan loader

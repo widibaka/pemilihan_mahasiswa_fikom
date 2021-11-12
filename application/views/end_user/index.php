@@ -15,6 +15,10 @@
 
     <!-- Custom styles for this template -->
     <link href="<?= base_url('assets/pemilu') ?>/Offcanvas_files/pricing.css" rel="stylesheet">
+
+    <!-- MD Toast -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>/assets/@dmuy/toast/dist/mdtoast.min.css">
+
     <style type="text/css">
       @-webkit-keyframes glow {
           to {
@@ -361,6 +365,9 @@
     <script src='https://rawgit.com/JulianLaval/canvas-particle-network/master/particle-network.min.js'></script>
     <script  src="<?= base_url() ?>assets/particle_animation/script.js"></script>
 
+    <!-- MD TOAST -->
+    <?php $this->load->view('toast') ?>
+
     <script type="text/javascript">
       function show_modal(index) {
         var nama_panjang = $('.'+index+' .nama_panjang').html();
@@ -386,4 +393,5 @@
         $('.loading').fadeOut('slow');
       })
     </script>
+
   

@@ -20,9 +20,13 @@
     <!-- animasi particle network -->
     <script src='https://rawgit.com/JulianLaval/canvas-particle-network/master/particle-network.min.js'></script>
     <script  src="<?= base_url() ?>assets/particle_animation/script.js"></script>
+
+    
     
   </body>
 </html>
+
+
 
 <script>
   // Loader for button
@@ -45,7 +49,14 @@
   })
 
 
+  
+
+
   $(document).ready(function() {
     $('.loading').fadeOut('slow');
+
   })
+  
 </script>
+
+<?php $this->load->view('toast') ?>

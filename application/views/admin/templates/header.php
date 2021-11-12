@@ -23,6 +23,9 @@
     <!-- animasi particle network -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/particle_animation/style.css">
 
+    <!-- MD Toast -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>/assets/@dmuy/toast/dist/mdtoast.min.css">
+
     <!-- Loader -->
     <style>
       /* Absolute Center Spinner */
