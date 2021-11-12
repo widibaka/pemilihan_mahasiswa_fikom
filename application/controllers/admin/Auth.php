@@ -9,6 +9,10 @@ class Auth extends CI_Controller {
 	}
 	public function login()
 	{
+		if ( !empty( $this->session->userdata('nama_admin') ) ) {
+			redirect( base_url() . 'admin/welcome' );
+		}
+
 		$this->load->model('HmpModel');
 		$this->load->model('AdminModel');
 		if ( $this->input->post() ) {
