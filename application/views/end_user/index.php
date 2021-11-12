@@ -281,17 +281,27 @@
               <div class="modal_visi_misi container">
               </div>
               <hr>
-              <?php echo form_open( base_url() . 'ormawa/going_to_google' ) ?>
-                <!-- <button type="submit" class="btn btn-lg btn-block mb-4 text-dark myGlower"> <img style="width: 30px;" src="https://developers.google.com/identity/images/g-logo.png"> Sign in with Google</button> -->
-                <input type="hidden" class="" required name="id_organisasi" value="<?php echo $organisasi['id_organisasi'] ?>">
-                <input type="hidden" class="" required id="id_kandidat" name="id_kandidat" value="">
-                <input type="text" class="form-control form-control-lg mb-3 w-100" name="nim_mahasiswa" required placeholder="NIM Mahasiswa ..." maxlength="9">
-                <button type="submit" href="" class="btn btn-lg btn-primary mb-4 text-white bg-primary btn-block myGlower">Lanjut</button>
-              </form>
               
-              <p class=" container">
-                <i>Dukung kandidat pilihan kamu dengan memasukkan NIM mahasiswa.</i>
-              </p>
+              <!-- Harus Manut Jadwale ya -->
+              <?php if ( strtotime($settings['tanggal_mulai']) < time() && time() < strtotime($settings['tanggal_selesai']) ): ?>
+                <?php echo form_open( base_url() . 'ormawa/going_to_google' ) ?>
+                  <!-- <button type="submit" class="btn btn-lg btn-block mb-4 text-dark myGlower"> <img style="width: 30px;" src="https://developers.google.com/identity/images/g-logo.png"> Sign in with Google</button> -->
+                  <input type="hidden" class="" required name="id_organisasi" value="<?php echo $organisasi['id_organisasi'] ?>">
+                  <input type="hidden" class="" required id="id_kandidat" name="id_kandidat" value="">
+                  <input type="text" class="form-control form-control-lg mb-3 w-100" name="nim_mahasiswa" required placeholder="NIM Mahasiswa ..." maxlength="9">
+                  <button type="submit" href="" class="btn btn-lg btn-primary mb-4 text-white bg-primary btn-block myGlower">Lanjut</button>
+                </form>
+                
+                <p class=" container">
+                  <i>Dukung kandidat pilihan kamu dengan memasukkan NIM mahasiswa.</i>
+                </p>
+              <?php else : ?>
+                <p class=" container">
+                  <i>Jadwal pemungutan suara hanya 
+                    <?php echo date("d/m/Y H:i:s", strtotime($settings['tanggal_mulai'])) ?> WIB sampai dengan 
+                    <?php echo date("d/m/Y H:i:s", strtotime($settings['tanggal_selesai'])) ?> WIB.</i>
+                </p>
+              <?php endif ?>
               
             </div>
           </div>

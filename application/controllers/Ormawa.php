@@ -169,6 +169,8 @@ class Ormawa extends CI_Controller {
 
 		$data['kandidat'] = $this->ModelKandidat->getKandidatByIdOrganisasi($data['organisasi']['id_organisasi']);
 
+
+		$data['settings'] = $this->SettingsModel->get_settings();
 		
 
 		// end mycode
@@ -177,9 +179,10 @@ class Ormawa extends CI_Controller {
 	}
 
 
-	public function statistik($id_organisasi)
+	public function statistik($id_organisasi, $limit=60)
 	{
 		$data['page_title'] = "Hasil Pemilihan";
+		$this->db->limit($limit);
 		$this->db->order_by('waktu', 'DESC');
 
 		$this->db->from('pemilwa_pemilih');

@@ -21,8 +21,10 @@
   <body>
 
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?php echo $organisasi['nama_organisasi'] ?></a>
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="<?php echo base_url() ?>">Halaman Pemilihan</a>
+      <span class="navbar-brand col-12" href="#">
+        <a class="text-white ml-3" href="#"><?php echo $organisasi['nama_organisasi'] ?></a>
+        <a class="text-white ml-3" href="<?php echo base_url() ?>">Halaman Pemilihan</a>
+      </span>
       <ul class="navbar-nav px-3">
         <!-- <li class="nav-item text-nowrap">
           <a class="nav-link" href="#">Sign out</a>
@@ -60,14 +62,14 @@
             
             Total suara masuk : <?php echo $statistik['seluruh'] ?>
           </div>
-          <h2>Daftar Pemilih (
+          <h2>Daftar Pemilih 
             <?php 
-            echo (!empty($organisasi['si'])) ? '| SI |' : '' ;
-            echo (!empty($organisasi['mi'])) ? '| MI |' : '' ;
-            echo (!empty($organisasi['ti'])) ? '| TI |' : '' ;
-            echo (!empty($organisasi['tk'])) ? '| TK |' : '' ;
-            echo (!empty($organisasi['email_khusus'])) ? '|Tertentu| ' : '' ?>
-          )</h2>
+            echo (!empty($organisasi['si'])) ? '(SI) ' : '' ;
+            echo (!empty($organisasi['mi'])) ? '(MI) ' : '' ;
+            echo (!empty($organisasi['ti'])) ? '(TI) ' : '' ;
+            echo (!empty($organisasi['tk'])) ? '(TK) ' : '' ;
+            echo (!empty($organisasi['email_khusus'])) ? '(Tertentu)' : '' ?>
+          </h2>
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
