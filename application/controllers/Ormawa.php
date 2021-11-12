@@ -21,8 +21,22 @@ class Ormawa extends CI_Controller {
 		$this->load->view('end_user/intro', $data);
 	}
 
-	public function i($nama_organisasi)
+	public function going_to_google()
 	{
+		if ( !empty($_POST['id_kandidat']) ) { //<-- simpen dulu di session
+			$_SESSION['id_kandidat'] = $_POST['id_kandidat'];
+		}
+		if ( !empty($_POST['nim_mahasiswa']) ) { //<-- simpen dulu di session
+			$_SESSION['nim_mahasiswa'] = $_POST['nim_mahasiswa'];
+		}
+		if ( !empty($_POST['id_organisasi']) ) { //<-- simpen dulu di session
+			$_SESSION['id_organisasi'] = $_POST['id_organisasi'];
+		}
+
+		// echo '<pre>'; var_dump( $_POST );
+		// echo '<pre>'; var_dump( $_SESSION ); die;
+
+
 		//**
 		// Login with Google
 		//**
@@ -40,7 +54,7 @@ class Ormawa extends CI_Controller {
 
 			$g_client->setClientId("91581392252-74f54bcmp6jfaj5vs5u3tt4knnuo0err.apps.googleusercontent.com");
 			$g_client->setClientSecret("5HRKlfbfMmYVu1Fv3204jNyh");
-			$g_client->setRedirectUri( base_url('pemilwa/index') );
+			$g_client->setRedirectUri( base_url( 'ormawa/going_to_google' ) );
 			$g_client->addScope("email");
 			$g_client->addScope("profile");
 
@@ -80,62 +94,88 @@ class Ormawa extends CI_Controller {
 		//**
 
 	    if ( !empty($pay_load) ) {
-	    	// var_dump($pay_load);
-	    	$check_email = $this->HmpModel->check_email_pemilih($pay_load["email"]);
-	    	if ( $check_email['email'] == false ) 
+			
+	    	if ( empty($_SESSION['nim_mahasiswa']) ) {
+					$this->HmpModel->set_alert('danger', 'Maaf '. ucwords(strtolower($pay_load['name'])) .', session kamu sudah habis karena terlalu lama. Silakan ulangi kembali.');
+	        redirect( base_url() );
+				}
+			
+	    	$check_sudah_memilih = $this->HmpModel->check_email_sudah_memilih($pay_load["email"]);
+	    	if ( $check_sudah_memilih ) 
+	    	{
+	    		$this->HmpModel->set_alert('danger', 'Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu hanya bisa memilih satu kali! :(');
+	        $this->HmpModel->refresh();
+	    	}
+
+				// Pilihan siapa yang punya hak pilih START
+	    	$check_prodi = $this->HmpModel->check_prodi($_SESSION['nim_mahasiswa'], $_SESSION['id_organisasi']);
+	    	$check_email_khusus = $this->HmpModel->check_email_pemilih_khusus($pay_load["email"], $_SESSION['id_organisasi']);
+				// kalau bener-bener di pilihan prodi dan email khusus enggak ada, maka kasih alert!
+	    	if ( $check_prodi == false && $check_email_khusus == false )
 	    	{
 	    		$this->HmpModel->set_alert('danger', 'Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu tidak terdaftar sebagai pemilik hak pilih! :(');
-	        	$this->HmpModel->refresh();
+					$this->HmpModel->refresh();
 	    	}
-	    	elseif ( $check_email['kosong'] == false )
-	    	{
-	    		$this->HmpModel->set_alert('danger', 'Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu cuma bisa memilih satu kali! :(');
-	        	$this->HmpModel->refresh();
-	    	}
-	    	else
-	    	{
-	    		$pilihan = $this->session->userdata('pilihan'); // ngambil dari session
-	    		if ( $this->HmpModel->check_kandidat_benar($pilihan) == false ) {
-	    			$this->HmpModel->set_alert('danger', 'Fatal Error! Silakan coba lagi.'); // <-- untuk testing
-	    			$this->HmpModel->refresh();
-	    		}
-	    		else{
-	    			$this->HmpModel->add_yuukensha($pay_load['email'], $pay_load['name'], $pilihan);
-		    		$this->HmpModel->set_alert('success', 'Terima kasih sudah memberikan satu vote yang berharga, '. ucwords(strtolower($pay_load['name'])) .' :)');
-		        	$this->HmpModel->refresh();
-	    		}
-	    	}
-	    }
+				// Pilihan siapa yang punya hak pilih END
 
-		// start	
+				// Check apakah email udb START (Hanya dilakukan kalau email_khusus bernilai false, yaitu tidak ada daftar email khusus)
+				if ( $check_email_khusus == false ) {
+						$check_email_udb = $this->HmpModel->check_email_udb($pay_load["email"]);
+						if ( $check_email_udb == false )
+						{
+							$this->HmpModel->set_alert('danger', 'Maaf, tolong gunakan email mahasiswa Universitas Duta Bangsa.');
+							$this->HmpModel->refresh();
+						}
+				}
+				// Check apakah email udb END
+	    	
+
+				$id_kandidat = $_SESSION['id_kandidat']; // ngambil dari session
+				if ( $this->HmpModel->check_kandidat_benar($id_kandidat) == false ) {
+					$this->HmpModel->set_alert('danger', 'Fatal Error! Silakan coba lagi.'); // <-- untuk testing
+					$this->HmpModel->refresh();
+				}
+				else{
+				// Kalau sudah betul semuanya
+					$data_pemilih = [
+						'email' => $pay_load['email'], 
+						'nama_pemilih' => $pay_load['name'], 
+						'nim_mahasiswa' => $_SESSION['nim_mahasiswa'],
+						'prodi' => $this->HmpModel->nim_2_prodi( $_SESSION['nim_mahasiswa'] ),
+						'angkatan' => $this->HmpModel->nim_2_angkatan( $_SESSION['nim_mahasiswa'] ),
+						'waktu' => date( 'Y-m-d H:i:s' ),
+						'id_kandidat' => $id_kandidat,
+					];
+					$this->HmpModel->add_yuukensha($data_pemilih);
+					$this->HmpModel->set_alert('success', 'Terima kasih sudah memberikan satu vote yang berharga, '. ucwords(strtolower($pay_load['name'])) .' :)');
+						$this->HmpModel->refresh();
+				}
+	    
+			
+			
+			}
+
+		$this->load->view('end_user/going_to_google', $data);
+	}
+
+	public function i($nama_organisasi)
+	{
+	
+		// start mycode
 		$nama_organisasi = str_replace('_', ' ', $nama_organisasi);
 		$data['organisasi'] = $this->ModelOrganisasi->getOrganisasiByNamaOrganisasi($nama_organisasi);
 		
 		$data['page_title'] = "Pemilihan Ketua ". $data['organisasi']['nama_organisasi'] ." 2022";
 
-		// echo '<pre>'; var_dump( $data['organisasi'] ); die;
-
 		$data['kandidat'] = $this->ModelKandidat->getKandidatByIdOrganisasi($data['organisasi']['id_organisasi']);
+
+		
+
+		// end mycode
 
 		$this->load->view('end_user/index', $data);
 	}
 
-	public function pass()
-	{
-		if ( $this->input->post() ) {
-			$auth_url = $this->input->post('auth_url');
-			$pilihan = $this->input->post('pilihan');
-
-			$this->session->set_userdata('pilihan', $pilihan);
-
-			redirect( $auth_url );
-
-		}
-		else{
-			$this->HmpModel->set_alert('danger', 'Maaf, Terjadi Kesalahan! Coba lagi!');
-	        redirect( base_url() . 'pemilwa/' );
-		}
-	}
 
 	public function statistik()
 	{

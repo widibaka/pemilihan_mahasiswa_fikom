@@ -3,7 +3,7 @@
 <html lang="en"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><style type="text/css" id="dark-mode-custom-style"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=0.8, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="Pemilihan Serentak Ketua Organisasi Mahasiswa Fakultas Ilmu Komputer Universitas Duta Bangsa">
     <meta name="author" content="">
     <link rel="icon" href="<?= base_url("assets/pemilu/Offcanvas_files/icon.png?ver1.1") ?>">
     <title><?php echo $page_title ?></title>

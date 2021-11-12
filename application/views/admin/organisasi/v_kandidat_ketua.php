@@ -1,5 +1,11 @@
 
-<!-- card secrion -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/summernote/summernote-lite.min.css">
+    <style>
+      .note-editor{
+        background-color: #fff;
+      }
+    </style>
+    <!-- card secrion -->
     <section class="h-100 w-100" style="box-sizing: border-box; background-color: transparent" id="skill">
       <div class="content-3-7 overflow-hidden container-xxl mx-auto position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="container mx-auto">
@@ -95,7 +101,7 @@
               <div class="col-12 mb-1">
                 <p class="text-center">
                   <div class="mt-2">
-                    <a target="_blank" href="<?php echo base_url(); ?>admin/organisasi/index/<?php echo $main_data['id_organisasi']; ?>" class="btn btn-fill w-100">
+                    <a href="<?php echo base_url(); ?>admin/organisasi/index/<?php echo $main_data['id_organisasi']; ?>" class="btn btn-fill w-100">
                       <i class="fa fa-arrow-left"></i> Kembali
                     </a>
                   </div>

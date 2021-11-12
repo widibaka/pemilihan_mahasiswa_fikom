@@ -3,7 +3,7 @@
 <html lang="en"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><style type="text/css" id="dark-mode-custom-style"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=0.8, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="<?php echo $organisasi['caption'] ?>">
     <meta name="author" content="">
     <link rel="icon" href="<?= base_url("assets/pemilu/Offcanvas_files/icon.png?ver1.1") ?>">
     <title><?php echo $page_title ?></title>
@@ -257,7 +257,7 @@
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="border-bottom: 0px;">
               <h5 class="modal-title" id="exampleModalLongTitle"></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -271,14 +271,18 @@
               <div class="modal_visi_misi container">
               </div>
               <hr>
-              <?php echo form_open( base_url() . 'pemilwa/pass/' ) ?>
-                <textarea name='auth_url' id="auth_url" class="d-none" required=""></textarea>
-                <input type="hidden" name="pilihan" value="" id="pilihan" type="hidden" required="">
-                <button type="submit" class="btn btn-lg btn-block mb-4 text-dark myGlower"> <img style="width: 30px;" src="https://developers.google.com/identity/images/g-logo.png"> Sign in with Google</button>
+              <?php echo form_open( base_url() . 'ormawa/going_to_google' ) ?>
+                <!-- <button type="submit" class="btn btn-lg btn-block mb-4 text-dark myGlower"> <img style="width: 30px;" src="https://developers.google.com/identity/images/g-logo.png"> Sign in with Google</button> -->
+                <input type="hidden" class="" required name="id_organisasi" value="<?php echo $organisasi['id_organisasi'] ?>">
+                <input type="hidden" class="" required id="id_kandidat" name="id_kandidat" value="">
+                <input type="text" class="form-control form-control-lg mb-3 w-100" name="nim_mahasiswa" required placeholder="NIM Mahasiswa ..." maxlength="9">
+                <button type="submit" href="" class="btn btn-lg btn-primary mb-4 text-white bg-primary btn-block myGlower">Lanjut</button>
               </form>
+              
               <p class=" container">
-                <i>Kirimkan dukungan kamu dengan sign in memakai akun google <strong>@fikom.udb.ac.id</strong> atau <strong>@mhs.udb.ac.id</strong> khusus mahasiswa Universitas Duta Bangsa.</i>
+                <i>Dukung kandidat pilihan kamu dengan memasukkan NIM mahasiswa.</i>
               </p>
+              
             </div>
           </div>
         </div>
@@ -348,13 +352,12 @@
         var kohousha_no_namae = $('.'+index+' .kohousha_no_namae').html();
         var visi_misi = $('.'+index+' .visi_misi').html();
 
-        var auth_url = '<?php echo $auth_url ?>';
-
 
         $('.modal_nama_panjang').html(nama_panjang);
         $('.modal_foto').attr('src', foto);
-        $('#pilihan').val(kohousha_no_namae);
-        $('#auth_url').val(auth_url);
+
+        $('#id_kandidat').val(index);
+        
         $('.modal_visi_misi').html(visi_misi);
       }
 

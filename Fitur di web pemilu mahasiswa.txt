@@ -1,0 +1,6 @@
+Opsi calon pemilih:
+- SI 01
+- MI 02
+- TI 03
+- TK 04
+- Custom (add email)
