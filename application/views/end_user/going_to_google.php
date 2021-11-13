@@ -204,6 +204,8 @@
 
     <div class="loading">Loading…</div>
 
+    
+
     <!-- <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow bg-dark border-dark text-light">
       <h5 class="my-0 mr-md-auto font-weight-normal">HMP Teknik Informatika</h5>
     </div> -->
@@ -214,6 +216,8 @@
         <?php if ( $this->session->flashdata('alert') ) {
           echo $this->session->flashdata('alert');
         } ?>
+
+        
       </div>
 
       <div class="row mb-3 text-center d-flex justify-content-center">

@@ -108,7 +108,7 @@ class HmpModel extends CI_Model
 				return '(TK) D3 - Teknik Komputer';
 				break;
 			default:
-				echo "ERROR! Saat mengubah nim menjadi Prodi. Silakan check kembali nim Anda."; die;
+				return '(Tidak Ada)';
 				break;
 			
 		}
@@ -117,9 +117,20 @@ class HmpModel extends CI_Model
 
 	public function nim_2_angkatan($nim)
 	{
-		// cari tahu prodi dari si pemilih
+		// cari tahu prodi asal si pemilih
 		$kode_angkatan = substr($nim, 0, 2);
 		return $kode_angkatan;
+
+	}
+
+	public function check_apakah_nim_fikom($nim)
+	{
+		// cari tahu fakultas dari nim
+		$kode_fakultas = substr($nim, 2, 2);
+		if ( $kode_fakultas == '01' ) {
+			return true;
+		}
+		return false;
 
 	}
 

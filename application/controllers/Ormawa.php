@@ -37,6 +37,9 @@ class Ormawa extends CI_Controller {
 		// echo '<pre>'; var_dump( $_SESSION ); die;
 
 
+		$organisasi = $this->ModelOrganisasi->getOrganisasiById( $_SESSION['id_organisasi'] );
+
+
 		//**
 		// Login with Google
 		//**
@@ -83,10 +86,8 @@ class Ormawa extends CI_Controller {
 	      } catch (Exception $e) {
 	        $e->getMessage();
 	        $this->HmpModel->set_alert('danger', 'Silakan coba lagi. (' . $e->getMessage() . ')'); // <-- untuk testing
-	        $this->HmpModel->refresh();
+	        redirect( base_url() . 'ormawa/i/' . str_replace(' ', "_", $organisasi['nama_organisasi']) );
 	      }
-	    } else {
-	      $pay_load = null;
 	    }
 
 		//**
@@ -97,7 +98,7 @@ class Ormawa extends CI_Controller {
 			
 	    	if ( empty($_SESSION['nim_mahasiswa']) OR empty($_SESSION['id_organisasi']) ) {
 					$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', session kamu sudah habis karena terlalu lama. Silakan ulangi kembali.');
-	        redirect( base_url() );
+	        redirect( base_url() . 'ormawa/i/' . str_replace(' ', "_", $organisasi['nama_organisasi']) );
 				}
 			
 				// Pilihan siapa yang punya hak pilih START
@@ -107,7 +108,7 @@ class Ormawa extends CI_Controller {
 					if ( $check_sudah_memilih )
 					{
 						$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu hanya bisa memilih satu kali untuk setiap organisasi. 😥');
-						$this->HmpModel->refresh();
+						redirect( base_url() . 'ormawa/i/' . str_replace(' ', "_", $organisasi['nama_organisasi']) );
 					}
 
 					
@@ -117,12 +118,21 @@ class Ormawa extends CI_Controller {
 
 
 
+							// kalau bukan nim fikom udb, kasih alert!
+							$check_apakah_fakultas_fikom = $this->HmpModel->check_apakah_nim_fikom($_SESSION['nim_mahasiswa']);
+							if ( $check_apakah_fakultas_fikom == false )
+							{
+								$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu bukan warga Fakultas Ilmu Komputer UDB. 😥');
+								redirect( base_url() . 'ormawa/i/' . str_replace(' ', "_", $organisasi['nama_organisasi']) );
+							}
+
+
 							// kalau bener-bener di pilihan prodi dan email khusus enggak ada, maka kasih alert!
 							$check_prodi = $this->HmpModel->check_prodi($_SESSION['nim_mahasiswa'], $_SESSION['id_organisasi']);
 							if ( $check_prodi == false )
 							{
 								$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu tidak terdaftar sebagai pemilik hak pilih! 😥');
-								$this->HmpModel->refresh();
+								redirect( base_url() . 'ormawa/i/' . str_replace(' ', "_", $organisasi['nama_organisasi']) );
 							}
 
 
@@ -131,7 +141,7 @@ class Ormawa extends CI_Controller {
 							if ( $check_email_udb == false )
 							{
 								$this->HmpModel->set_alert('danger', '⚠️Maaf, tolong gunakan email mahasiswa Universitas Duta Bangsa.');
-								$this->HmpModel->refresh();
+								redirect( base_url() . 'ormawa/i/' . str_replace(' ', "_", $organisasi['nama_organisasi']) );
 							}
 
 
@@ -142,7 +152,7 @@ class Ormawa extends CI_Controller {
 					// check apakah kandidatnya betul
 					if ( $this->HmpModel->check_kandidat_benar( $_SESSION['id_kandidat'] ) == false ) {
 						$this->HmpModel->set_alert('danger', '⚠️Fatal Error! Silakan coba lagi.');
-						$this->HmpModel->refresh();
+						redirect( base_url() . 'ormawa/i/' . str_replace(' ', "_", $organisasi['nama_organisasi']) );
 					}
 				// Pilihan siapa yang punya hak pilih END
 
@@ -161,9 +171,10 @@ class Ormawa extends CI_Controller {
 					];
 					$this->HmpModel->add_yuukensha($data_pemilih);
 					$this->HmpModel->set_alert('success', 'Terima kasih sudah memberikan satu vote yang berharga, '. ucwords(strtolower($pay_load['name'])) .' 😁');
-					$this->HmpModel->refresh();
+					redirect( base_url() . 'ormawa/i/' . str_replace(' ', "_", $organisasi['nama_organisasi']) );
 				}
 	    
+				
 			
 			
 			}
@@ -189,6 +200,7 @@ class Ormawa extends CI_Controller {
 		// end mycode
 
 		$this->load->view('end_user/index', $data);
+    
 	}
 
 
