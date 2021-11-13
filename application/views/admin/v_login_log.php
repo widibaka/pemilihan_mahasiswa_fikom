@@ -15,16 +15,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>02/12/2021 12:00:12</td>
-                </tr>
-                <tr>
-                  <td>Jacob</td>
-                  <td>02/12/2021 12:00:12</td>
-                </tr>
+                <?php foreach ($main_data as $key => $val): ?>
+                  <tr>
+                    <td><?php echo $val['nama_admin'] ?></td>
+                    <td><?php echo $val['waktu'] ?></td>
+                  </tr>
+                <?php endforeach ?>
               </tbody>
             </table>
+            <center>...</center>
           </div>
 
         </div>

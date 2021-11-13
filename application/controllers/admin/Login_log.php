@@ -14,19 +14,13 @@ class Login_log extends CI_Controller {
 		}
 		
 	}
-	public function index()
+	public function index($limit = 15)
 	{
-		$post = $this->input->post();
-		if ( $post ) {
-			$this->AdminModel->add_admin( $post );
-			redirect( base_url() . $this->uri->uri_string() );
-		}
-		$data['title'] = 'Admin';
-		$data['userdata'] = $this->AuthModel->get_user(
-			$this->session->userdata('id_user')
-		);
+		$data['title'] = 'Login Log Admin';
 
-		$data['main_data'] = $this->AdminModel->get_all_admin();
+		$this->db->limit($limit);
+		$this->db->order_by('waktu', 'DESC');
+		$data['main_data'] = $this->db->get('pemilwa_login_log')->result_array();
 
 		$this->load->view('admin/templates/header', $data);
 		$this->load->view('admin/v_login_log', $data);
