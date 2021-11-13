@@ -110,15 +110,15 @@ class Ormawa extends CI_Controller {
 						$this->HmpModel->refresh();
 					}
 
-					$check_prodi = $this->HmpModel->check_prodi($_SESSION['nim_mahasiswa'], $_SESSION['id_organisasi']);
-					$check_email_khusus = $this->HmpModel->check_email_pemilih_khusus($pay_load["email"], $_SESSION['id_organisasi']);
-
+					
 					// !!! Hanya dilakukan kalau email_khusus bernilai false, yaitu tidak ada di daftar email khusus !!!
+					$check_email_khusus = $this->HmpModel->check_email_pemilih_khusus($pay_load["email"], $_SESSION['id_organisasi']);
 					if ( $check_email_khusus == false ) {
 
 
 
 							// kalau bener-bener di pilihan prodi dan email khusus enggak ada, maka kasih alert!
+							$check_prodi = $this->HmpModel->check_prodi($_SESSION['nim_mahasiswa'], $_SESSION['id_organisasi']);
 							if ( $check_prodi == false )
 							{
 								$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu tidak terdaftar sebagai pemilik hak pilih! 😥');
