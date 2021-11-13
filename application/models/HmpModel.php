@@ -18,14 +18,14 @@ class HmpModel extends CI_Model
 	public function check_email_sudah_memilih($email, $id_organisasi)
 	{
 		$this->db->where('id_organisasi', $id_organisasi);
-		$yuukensha = $this->db->get('pemilwa_pemilih')->result_array();
-		$status = false;
-		foreach ($yuukensha as $key => $pemilih) {
-			if ( $pemilih['email'] == $email ) {
-				$status = true;
-			}
+		$this->db->where('email', $email);
+		$result = $this->db->get('pemilwa_pemilih')->num_rows();
+		if ($result==null) {
+			return false;
+		} else {
+			return true;
 		}
-		return $status;
+		
 	}
 
 	public function get_prodi_from_kode($kode_prodi)

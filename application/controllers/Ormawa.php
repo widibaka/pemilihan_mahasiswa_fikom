@@ -95,45 +95,58 @@ class Ormawa extends CI_Controller {
 
 	    if ( !empty($pay_load) ) {
 			
-	    	if ( empty($_SESSION['nim_mahasiswa']) ) {
+	    	if ( empty($_SESSION['nim_mahasiswa']) OR empty($_SESSION['id_organisasi']) ) {
 					$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', session kamu sudah habis karena terlalu lama. Silakan ulangi kembali.');
 	        redirect( base_url() );
 				}
 			
-	    	$check_sudah_memilih = $this->HmpModel->check_email_sudah_memilih($pay_load["email"], $_SESSION['id_organisasi']);
-	    	if ( $check_sudah_memilih ) 
-	    	{
-	    		$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu hanya bisa memilih satu kali untuk setiap organisasi. 😥');
-	        $this->HmpModel->refresh();
-	    	}
-
 				// Pilihan siapa yang punya hak pilih START
-	    	$check_prodi = $this->HmpModel->check_prodi($_SESSION['nim_mahasiswa'], $_SESSION['id_organisasi']);
-	    	$check_email_khusus = $this->HmpModel->check_email_pemilih_khusus($pay_load["email"], $_SESSION['id_organisasi']);
-				// kalau bener-bener di pilihan prodi dan email khusus enggak ada, maka kasih alert!
-	    	if ( $check_prodi == false && $check_email_khusus == false )
-	    	{
-	    		$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu tidak terdaftar sebagai pemilik hak pilih! 😥');
-					$this->HmpModel->refresh();
-	    	}
+
+
+					$check_sudah_memilih = $this->HmpModel->check_email_sudah_memilih($pay_load["email"], $_SESSION['id_organisasi']);
+					if ( $check_sudah_memilih )
+					{
+						$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu hanya bisa memilih satu kali untuk setiap organisasi. 😥');
+						$this->HmpModel->refresh();
+					}
+
+					$check_prodi = $this->HmpModel->check_prodi($_SESSION['nim_mahasiswa'], $_SESSION['id_organisasi']);
+					$check_email_khusus = $this->HmpModel->check_email_pemilih_khusus($pay_load["email"], $_SESSION['id_organisasi']);
+
+					// !!! Hanya dilakukan kalau email_khusus bernilai false, yaitu tidak ada di daftar email khusus !!!
+					if ( $check_email_khusus == false ) {
+
+
+
+							// kalau bener-bener di pilihan prodi dan email khusus enggak ada, maka kasih alert!
+							if ( $check_prodi == false )
+							{
+								$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu tidak terdaftar sebagai pemilik hak pilih! 😥');
+								$this->HmpModel->refresh();
+							}
+
+
+							// Check apakah email udb START
+							$check_email_udb = $this->HmpModel->check_email_udb($pay_load["email"]);
+							if ( $check_email_udb == false )
+							{
+								$this->HmpModel->set_alert('danger', '⚠️Maaf, tolong gunakan email mahasiswa Universitas Duta Bangsa.');
+								$this->HmpModel->refresh();
+							}
+
+
+
+					}
+					
+					
+					// check apakah kandidatnya betul
+					if ( $this->HmpModel->check_kandidat_benar( $_SESSION['id_kandidat'] ) == false ) {
+						$this->HmpModel->set_alert('danger', '⚠️Fatal Error! Silakan coba lagi.');
+						$this->HmpModel->refresh();
+					}
 				// Pilihan siapa yang punya hak pilih END
 
-				// Check apakah email udb START (Hanya dilakukan kalau email_khusus bernilai false, yaitu tidak ada daftar email khusus)
-				if ( $check_email_khusus == false ) {
-						$check_email_udb = $this->HmpModel->check_email_udb($pay_load["email"]);
-						if ( $check_email_udb == false )
-						{
-							$this->HmpModel->set_alert('danger', '⚠️Maaf, tolong gunakan email mahasiswa Universitas Duta Bangsa.');
-							$this->HmpModel->refresh();
-						}
-				}
-				// Check apakah email udb END
-	    	
 
-				if ( $this->HmpModel->check_kandidat_benar( $_SESSION['id_kandidat'] ) == false ) {
-					$this->HmpModel->set_alert('danger', '⚠️Fatal Error! Silakan coba lagi.');
-					$this->HmpModel->refresh();
-				}
 				else{
 				// Kalau sudah betul semuanya
 					$data_pemilih = [
@@ -148,7 +161,7 @@ class Ormawa extends CI_Controller {
 					];
 					$this->HmpModel->add_yuukensha($data_pemilih);
 					$this->HmpModel->set_alert('success', 'Terima kasih sudah memberikan satu vote yang berharga, '. ucwords(strtolower($pay_load['name'])) .' 😁');
-						$this->HmpModel->refresh();
+					$this->HmpModel->refresh();
 				}
 	    
 			
