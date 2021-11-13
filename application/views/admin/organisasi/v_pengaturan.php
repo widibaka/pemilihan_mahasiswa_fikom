@@ -95,30 +95,3 @@
       </div>
     </section>
     <!-- end card section -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Tambah Pengguna</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="md-form mb-6">
-              <label for="#">User</label>
-              <input type="text" id="user" class="form-control validate" />
-            </div>
-            <br />
-            <div class="md-form mb-6">
-              <label for="#">Password</label>
-              <input type="password" id="password" class="form-control validate" />
-            </div>
-          </div>
-          <p class="text-center">
-            <a class="btn btn-primary justify-content-center align-items-center w-50" href="#" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- End Modal -->
