@@ -26,7 +26,7 @@
 
           <div class="col-12">
             <p class="text-center">
-              <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" href="#" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="fa fa-plus-circle"></span> Tambah Pengguna</a>
+              <a class="btn btn-fill justify-content-center align-items-center w-100 shadow" href="#" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="fa fa-plus-circle"></span> Tambah Admin</a>
             </p>
           </div>
 
@@ -85,6 +85,36 @@
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Tambah Admin</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <?php echo form_open(base_url() . 'admin/settings/tambah_admin', "") ?>
+            <div class="modal-body text-center">
+              <div class="md-form mb-6">
+                <label for="nama_admin">Username</label>
+                <input type="text" id="nama_admin" name="nama_admin" class="form-control validate" />
+              </div>
+              <br />
+              <div class="md-form mb-6">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control validate" />
+              </div>
+            </div>
+            <p class="text-center">
+              <button type="submit" class="btn btn-warning justify-content-center align-items-center shadow">Create</button>
+            </p>
+            </form>
+        </div>
+          
+      </div>
+    </div>
+    <!-- End Modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalWarning" tabindex="-1" aria-labelledby="modalWarningLabel" aria-hidden="true"  data-bs-backdrop="static" data-bs-keyboard="false">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">

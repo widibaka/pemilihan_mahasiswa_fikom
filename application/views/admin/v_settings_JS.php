@@ -7,7 +7,7 @@
     });
 
     setTimeout(function () {
-        $("#exampleModal").modal("show");
+        $("#modalWarning").modal("show");
     }, 500);
 
 </script>
