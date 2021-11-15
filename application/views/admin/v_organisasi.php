@@ -25,7 +25,7 @@
             </a>
           </div>
           <div class="col-12 mt-2" style="display: none;" id="keterangan-kandidat-ketua">
-            <p>Kandidat Ketua dapat diubah dan disesuaikan memakai fitur ini.</p>
+            <p>Kandidat Ketua dapat diubah dan disesuaikan memakai fitur ini. Anda dapat mengubah foto, visi dan misi untuk setiap kandidat.</p>
           </div>
           <hr style="opacity: 0;">
           <!-- Satu item -->

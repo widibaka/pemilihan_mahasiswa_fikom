@@ -118,6 +118,16 @@ class Ormawa extends CI_Controller {
 
 
 
+							// batasan angkatan!
+							$check_angkatan = $this->HmpModel->check_angkatan($_SESSION['nim_mahasiswa']);
+							if ( $check_angkatan == false )
+							{
+								$this->HmpModel->set_alert('danger', '⚠️Maaf '. ucwords(strtolower($pay_load['name'])) .', kamu tidak terdaftar sebagai pemilik hak pilih. 😥');
+								redirect( base_url() . 'ormawa/i/' . str_replace(' ', "_", $organisasi['nama_organisasi']) );
+							}
+
+
+
 							// kalau bukan nim fikom udb, kasih alert!
 							$check_apakah_fakultas_fikom = $this->HmpModel->check_apakah_nim_fikom($_SESSION['nim_mahasiswa']);
 							if ( $check_apakah_fakultas_fikom == false )

@@ -70,6 +70,19 @@
                 </div>
               </div>
             </div>
+            <div class="form-group mb-5">
+              <label for="angkatan_pemilih">Batasan Tahun Angkatan Pemegang Hak Pilih</label>
+              <div class="input-group tanggal_waktu">
+                <input name="angkatan_pemilih" type="text" class="form-control" id="angkatan_pemilih"
+                
+                
+                 value="<?php echo $data_settings['angkatan_pemilih'] ?>"
+                
+                
+                required />
+              </div>
+              <small>Inputkan tahun-tahun angkatan yang boleh berpartisipasi dalam pemilihan. Contoh "18,19,20,21". (Batasan ini tidak akan diterapkan pada pemilih yang terdaftar pada Email Khusus.)</small>
+            </div>
             <div class="col-12 mb-lg-5">
               <p class="text-center pt-4">
                 <button type="submit" class="btn btn-fill justify-content-center align-items-center w-100 shadow">Terapkan</button>

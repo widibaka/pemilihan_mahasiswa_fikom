@@ -146,6 +146,27 @@ class HmpModel extends CI_Model
 		return $status;
 	}
 
+	public function check_angkatan($nim)
+	{
+		// potong nim untuk mendapatkan tahun angkatan
+		$angkatan = substr($nim, 0, 2);
+
+
+		$settings = $this->SettingsModel->get_settings();
+		$angkatan_pemilih = $settings['angkatan_pemilih'];
+		$angkatan_pemilih = explode(',', $angkatan_pemilih);
+		$status = false;
+
+		// loop, jika batasan angkatan di db ada yang sama dengan angkatan di parameter, maka return true
+		foreach ($angkatan_pemilih as $key => $value) {
+			// hapus whitespace
+			if ( str_replace(' ', '', $value) == $angkatan ) {
+				$status = true;
+			}
+		}
+		return $status;
+	}
+
 	public function check_email_pemilih_khusus($email_pemilih, $id_organisasi)
 	{
 		// ambil data dari db
