@@ -219,8 +219,8 @@
 
     <div class="pricing-header px-4 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <img class="my-3" src="<?php echo base_url() ?>assets/logo/logo_kpum.png" alt="Logo KPUM" style="height: 120px;">
-      <h1 class="display-5">Pemilihan Umum Mahasiswa</h1>
-      <p class="lead">Pemilihan Serentak Ketua Organisasi Mahasiswa Fakultas Ilmu Komputer Universitas Duta Bangsa</p>
+      <h1 class="display-5"><?php echo $page_title ?></h1>
+      <!-- <p class="lead">Pemilihan Serentak Ketua Organisasi Mahasiswa Fakultas Ilmu Komputer Universitas Duta Bangsa</p> -->
     </div>
 
 

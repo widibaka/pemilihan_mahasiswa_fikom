@@ -14,7 +14,7 @@ class Ormawa extends CI_Controller {
 	public function index()
 	{
 		// start	
-		$data['page_title'] = "Pemilihan Ketua Ormawa 2022 Fikom Universitas Duta Bangsa";
+		$data['page_title'] = "PEMILIHAN RAYA KETUA ORMAWA FIKOM UDB 2021-2022";
 
 		$data['organisasi'] = $this->ModelOrganisasi->getAll();
 

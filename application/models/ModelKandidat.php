@@ -5,7 +5,7 @@ class ModelKandidat extends CI_Model {
 	public $table = 'pemilwa_kandidat';
 	public function getKandidatByIdOrganisasi($id_organisasi)
 	{
-		$this->db->order_by('nama_kandidat', 'ASC'); 
+		$this->db->order_by('id_kandidat', 'ASC'); 
 		$this->db->where('id_organisasi', $id_organisasi);
 		return $this->db->get( $this->table )->result_array();
 	}
