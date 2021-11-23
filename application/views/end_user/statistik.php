@@ -62,44 +62,46 @@
             
             Total suara masuk : <?php echo $statistik['seluruh'] ?>
           </div>
-          <h2>Daftar Pemilih 
-            <?php 
-            echo (!empty($organisasi['si'])) ? '(SI) ' : '' ;
-            echo (!empty($organisasi['mi'])) ? '(MI) ' : '' ;
-            echo (!empty($organisasi['ti'])) ? '(TI) ' : '' ;
-            echo (!empty($organisasi['tk'])) ? '(TK) ' : '' ;
-            echo (!empty($organisasi['email_khusus'])) ? '(Tertentu)' : '' ?>
-          </h2>
-          <div class="table-responsive">
-            <table class="table table-striped table-sm">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Inisial</th>
-                  <th>Pilihan</th>
-                  <th>Prodi</th>
-                  <th>Angkatan</th>
-                  <th>Waktu</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $i = 0; ?>
-                <?php foreach ($yuukensha as $key => $pemilih): ?>
-                  <?php $i++ ?>
-                  
-                    <tr>
-                      <td><?php echo $i ?></td>
-                      <td><?php echo substr($pemilih['nama_pemilih'], 0, 3) ?>*********</td>
-                      <td><?php echo $pemilih['nama_kandidat'] ?></td>
-                      <td><?php echo $pemilih['prodi'] ?></td>
-                      <td><?php echo $pemilih['angkatan'] ?></td>
-                      <td><?php echo date("d/m/Y H:i:s", strtotime($pemilih['waktu'])) ?></td>
-                    </tr>
+          <?php if ( !empty( $jumlah_data ) ): ?>
+            <h2>Daftar Pemilih 
+              <?php 
+              echo (!empty($organisasi['si'])) ? '(SI) ' : '' ;
+              echo (!empty($organisasi['mi'])) ? '(MI) ' : '' ;
+              echo (!empty($organisasi['ti'])) ? '(TI) ' : '' ;
+              echo (!empty($organisasi['tk'])) ? '(TK) ' : '' ;
+              echo (!empty($organisasi['email_khusus'])) ? '(Tertentu)' : '' ?>
+            </h2>
+            <div class="table-responsive">
+              <table class="table table-striped table-sm">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Inisial</th>
+                    <th>Pilihan</th>
+                    <th>Prodi</th>
+                    <th>Angkatan</th>
+                    <th>Waktu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i = 0; ?>
+                  <?php foreach ($yuukensha as $key => $pemilih): ?>
+                    <?php $i++ ?>
+                    
+                      <tr>
+                        <td><?php echo $i ?></td>
+                        <td><?php echo substr($pemilih['nama_pemilih'], 0, 3) ?>*********</td>
+                        <td><?php echo $pemilih['nama_kandidat'] ?></td>
+                        <td><?php echo $pemilih['prodi'] ?></td>
+                        <td><?php echo $pemilih['angkatan'] ?></td>
+                        <td><?php echo date("d/m/Y H:i:s", strtotime($pemilih['waktu'])) ?></td>
+                      </tr>
 
-                <?php endforeach ?>
-              </tbody>
-            </table>
-          </div>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
+          <?php endif ?>
         </main>
       </div>
     </div>

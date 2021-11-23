@@ -214,7 +214,7 @@ class Ormawa extends CI_Controller {
 	}
 
 
-	public function statistik($id_organisasi, $limit=60)
+	public function statistik($id_organisasi, $limit=0)
 	{
 		$data['page_title'] = "Hasil Pemilihan";
 		$this->db->limit($limit);
@@ -225,6 +225,9 @@ class Ormawa extends CI_Controller {
 		$this->db->from('pemilwa_pemilih');
 		$this->db->select('id_pemilih, nama_pemilih, prodi, angkatan, waktu, pemilwa_pemilih.id_kandidat, nama_kandidat,');
 		$this->db->join('pemilwa_kandidat', 'pemilwa_pemilih.id_kandidat = pemilwa_kandidat.id_kandidat');
+
+		$data['jumlah_data'] = $limit;
+
 		$data['yuukensha'] = $this->db->get()->result_array();
 		
 		$data['organisasi'] = $this->ModelOrganisasi->getOrganisasiById($id_organisasi);
